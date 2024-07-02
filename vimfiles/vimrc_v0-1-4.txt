@@ -1,0 +1,32 @@
+" Vimrc for Cadecraft
+" R: v0.1.4, E: 2024/04/06
+
+" Simple
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" Location for swap files
+set backupdir=$HOME/vimfiles/tmp
+set directory=$HOME/vimfiles/tmp
+
+" Working Directory
+cd C:/Cade
+
+" Appearance: colors
+t_Co=256
+set termguicolors
+" https://github.com/cocopon/iceberg.vim
+colorscheme iceberg
+
+" Appearance: preferences
+set number
+set cursorline
+
+" Preferences
+set clipboard=unnamed
+
+" Disable auto comment next line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

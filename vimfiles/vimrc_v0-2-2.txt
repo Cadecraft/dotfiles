@@ -1,0 +1,58 @@
+" Vimrc for Cadecraft
+" R: v0.2.2, E: 2024/06/21
+
+" Simple
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" Location for swap files
+set backupdir=$HOME/vimfiles/tmp
+set directory=$HOME/vimfiles/tmp
+
+" Working Directory (removed: causes issues if opening vim from elsewhere)
+" cd C:/Cade
+
+" Appearance: preferences
+set number
+set cursorline
+
+" Preferences
+set clipboard=unnamed
+set so=8
+set backspace=indent,eol
+
+" Disable auto comment next line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Remap jk to escape in insert mode
+inoremap jk <Esc>
+" Remap Ctrl+Backspace to delete a word in insert mode
+inoremap <C-BS> <C-w>
+
+" Custom commands
+:command Use4Space set ts=4 sw=4 expandtab
+:command Use8Tab set ts=8 sw=8 noexpandtab
+
+" Plugins using vim-plug (the default plugin directory is vimfiles/plugged)
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'cocopon/iceberg.vim'
+call plug#end()
+
+" Plugins: preferences
+let g:NERDTreeChDirMode=2
+
+" Appearance: colors
+if !has("gui_running")
+	t_Co=256
+endif
+set termguicolors
+" cocopon/iceberg.vim
+colorscheme iceberg
