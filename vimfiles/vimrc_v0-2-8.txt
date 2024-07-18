@@ -1,0 +1,63 @@
+" Vimrc for Cadecraft
+" R: v0.2.8, E: 2024/07/18
+
+" Simple
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" Location for swap files (the tmp folder must be created)
+set backupdir=$HOME/vimfiles/tmp
+set directory=$HOME/vimfiles/tmp
+
+" Appearance: preferences
+set number
+set cursorline
+
+" Editing: preferences
+set clipboard=unnamed
+set so=8
+set backspace=indent,eol
+" Disable auto comment next line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" To switch buffers
+set hidden
+
+" Editing: remaps
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+inoremap jk <Esc>
+inoremap <C-BS> <C-w>
+" Strikethrough in markdown lists
+nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
+nnoremap <Leader>S _f~xxf~xx0
+
+" Editing: custom commands
+:command Use4Space set ts=4 sw=4 expandtab
+:command Use8Tab set ts=8 sw=8 noexpandtab
+
+" Plugins: install using vim-plug (the default plugin directory is vimfiles/plugged)
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'cocopon/iceberg.vim'
+Plug 'embark-theme/vim'
+call plug#end()
+
+" Plugins: preferences
+let g:NERDTreeChDirMode=2
+
+" Appearance: colors
+if !has("gui_running")
+	" Sometimes unnecessary; depends on the terminal
+	t_Co=256
+endif
+set termguicolors
+set background=dark
+" cocopon/iceberg.vim
+colorscheme iceberg
