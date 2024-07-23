@@ -8,3 +8,8 @@ I don't have much here for now, but I'll update this repository in the future.
 
 - Folders represent each application/category
 - Filenames are versioned, due to legacy reasons with my old version control system (sorry it looks like that :sob:)
+
+## Current Dotfiles
+
+- Configs for Vim, gVim, and Neovim
+- Config for tmux
