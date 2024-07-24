@@ -1,0 +1,45 @@
+" Minimal Vimrc for Cadecraft
+" R: v0.1.0, E: 2024/07/24
+
+" Simple, portable config with no dependency on plugins, autoloaded files, or filesystem setup
+" This is meant to be maintained alongside my vimrc and init.lua
+
+" Simple
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" Appearance: preferences
+set number
+set cursorline
+
+" Editing: preferences
+set so=8
+set backspace=indent,eol
+" Disable auto comment next line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" To switch buffers
+set hidden
+
+" Editing: remaps
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+inoremap jk <Esc>
+inoremap <C-BS> <C-w>
+" Strikethrough in markdown lists
+nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
+nnoremap <Leader>S _f~xxf~xx0
+
+" Editing: custom commands
+:command Use4Space set ts=4 sw=4 expandtab
+:command Use8Tab set ts=8 sw=8 noexpandtab
+:command WritingMode set background=light breakindent linebreak
+
+" Appearance: colors
+set termguicolors
+set background=dark
+" Use the built-in sorbet, with elflord as a built-in backup
+colorscheme elflord
+colorscheme sorbet
