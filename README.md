@@ -13,3 +13,4 @@ I don't have much here for now, but I'll update this repository in the future.
 
 - Configs for Vim, gVim, and Neovim
 - Config for tmux
+- Config for Zsh
