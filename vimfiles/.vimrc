@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.1, E: 2024/07/24
+" R: v0.3.4, E: 2024/07/25
 
 " Simple
 set nocompatible
@@ -9,8 +9,9 @@ filetype indent on
 syntax on
 
 " Location for swap files (the tmp folder must be created)
-set backupdir=$HOME/vimfiles/tmp
-set directory=$HOME/vimfiles/tmp
+" The double slashes ensures the file is always unique
+set backupdir=$HOME/.tmp//
+set directory=$HOME/.tmp//
 
 " Appearance: preferences
 set number
@@ -44,7 +45,7 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 :command Use8Tab set ts=8 sw=8 noexpandtab
 :command WritingMode set background=light breakindent linebreak
 
-" Plugins: install using vim-plug (the default plugin directory is vimfiles/plugged)
+" Plugins: install using vim-plug (requires `plug.vim` from `junegunn/vim-plug` to be in the autoload directory)
 call plug#begin()
 " Fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -62,10 +63,7 @@ call plug#end()
 let g:NERDTreeChDirMode=2
 
 " Appearance: colors
-if !has("gui_running")
-	" Sometimes unnecessary; depends on the terminal
-	t_Co=256
-endif
+" `t_Co=256` should not be needed
 set termguicolors
 set background=dark
 " Use iceberg, with sorbet as a built-in backup

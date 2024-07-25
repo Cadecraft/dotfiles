@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.4.8, E: 2024/07/25
+-- R: v0.4.9, E: 2024/07/25
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -76,7 +76,7 @@ vim.api.nvim_create_user_command('WritingMode',
 	end, {}
 )
 
--- Plugins: install using vim-plug (`:PlugInstall`)
+-- Plugins: install using `junegunn/vim-plug` (`:PlugInstall`)
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 -- Fzf
@@ -88,7 +88,6 @@ Plug('junegunn/fzf.vim')
 Plug('preservim/nerdtree')
 Plug('airblade/vim-gitgutter')
 Plug('nvim-lualine/lualine.nvim')
-Plug('KabbAmine/vCoolor.vim')
 -- Themes: main
 Plug('cocopon/iceberg.vim')
 Plug('ellisonleao/gruvbox.nvim')
