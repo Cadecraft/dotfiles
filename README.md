@@ -1,16 +1,21 @@
 # Dotfiles
 
-My personal dotfiles: how I store my preferences for various tools.
-
-I don't have much here for now, but I'll update this repository in the future.
+My personal dotfiles: how I store my preferences and configs for various tools.
 
 ## Organization
 
-- Folders represent each application/category
-- Filenames are versioned, due to legacy reasons with my old version control system (sorry it looks like that :sob:)
+- Folders represent each application/category, if there are lots of files
+- Otherwise, filenames should be self-explanatory; all files are listed below.
+
+## Notes
+
+- Several of these dotfiles are intended to be used with nerd/powerline fonts. My go-to font is Consolas7NF [Znuff/consolas-powerline](https://github.com/Znuff/consolas-powerline).
 
 ## Current Dotfiles
 
 - Configs for Vim, gVim, and Neovim
+    - Create the tmp folder for swapfiles under `HOME/vimfiles/tmp`
+    - Also includes minimal portable Vim config
 - Config for tmux
 - Config for Zsh
+- Config for PowerShell (put under `HOME/Documents/WindowsPowerShell`)

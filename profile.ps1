@@ -1,16 +1,13 @@
 # PowerShell profile (for a better appearance)
-# R: v0.2.0, E: 2024/07/24
+# R: v0.2.1, E: 2024/07/24
 
 # Requires a Nerd/Powerline font
 
 $global:foregroundColor = 'white'
 
-# For the prompt
+# For the prompt (what appears to the left when entering a command)
 function Prompt {
 	# Prompt Colors
-	# Bladk DarkBlue DarkGreen DarkCyan DarkRed DarkMagenta DarkYellow
-	# Gray DarkGray Blue Green Cyan Red Magenta Yellow White
-
 	$prompt_text = "White"
 	$prompt_background = "DarkGray"
 	$prompt_git_background = "Blue"
@@ -26,6 +23,7 @@ function Prompt {
 
 	# Start displaying
 	$path = PWD
+	Write-Host " " -foregroundColor $prompt_text -backgroundColor $prompt_background -NoNewLine
 	Write-Host $path -foregroundColor $prompt_text -backgroundColor $prompt_background -NoNewLine
 	Write-Host " " -foregroundColor $prompt_text -backgroundColor $prompt_background -NoNewLine
 	if ($git_string) {

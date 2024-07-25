@@ -1,8 +1,0 @@
-" gvimrc for Cadecraft
-" R: v0.1.0, E: 2024/04/10
-
-" Appearance: font, no menu
-set guioptions+=d 
-set guioptions-=m
-set guioptions-=T
-set guifont=Consolas:h11:cANSI

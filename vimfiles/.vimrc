@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.0, E: 2024/07/24
+" R: v0.3.1, E: 2024/07/24
 
 " Simple
 set nocompatible
@@ -33,6 +33,11 @@ inoremap <C-BS> <C-w>
 " Strikethrough in markdown lists
 nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
 nnoremap <Leader>S _f~xxf~xx0
+" Window navigation
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> :redraw!<cr><C-w>l
 
 " Editing: custom commands
 :command Use4Space set ts=4 sw=4 expandtab

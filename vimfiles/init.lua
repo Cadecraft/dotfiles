@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.4.5, E: 2024/07/24
+-- R: v0.4.8, E: 2024/07/25
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -9,6 +9,11 @@
 local prefix = vim.fn.expand('~/.nvim')
 vim.opt.backupdir = { prefix .. '/.tmp//' }
 vim.opt.directory = { prefix .. '/.tmp//' }
+
+-- Use PowerShell in Windows
+if vim.fn.has('macunix') == 0 then
+	vim.o.shell = "powershell.exe"
+end
 
 -- Appearance: preferences
 vim.opt.number = true
@@ -41,6 +46,12 @@ vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true })
 -- Strikethrough in markdown lists
 vim.api.nvim_set_keymap('n', '<Leader>s', '_wi~~<Esc>A~~<Esc>0', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>S', '_f~xxf~xx0', { noremap = true })
+-- Window navigation
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
+-- Ctrl+L should also refresh screen
+vim.api.nvim_set_keymap('n', '<C-l>', ':redraw!<cr>:noh<cr><C-w>l', { noremap = true })
 
 -- Editing: custom commands
 vim.api.nvim_create_user_command('Use4Space',
