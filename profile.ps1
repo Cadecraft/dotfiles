@@ -1,5 +1,5 @@
 # PowerShell profile (for a better appearance)
-# R: v0.2.1, E: 2024/07/24
+# R: v0.3.0, E: 2024/07/26
 
 # Requires a Nerd/Powerline font
 
@@ -8,9 +8,9 @@ $global:foregroundColor = 'white'
 # For the prompt (what appears to the left when entering a command)
 function Prompt {
 	# Prompt Colors
-	$prompt_text = "White"
-	$prompt_background = "DarkGray"
-	$prompt_git_background = "Blue"
+	$prompt_text = "Black"
+	$prompt_background = "Blue"
+	$prompt_git_background = "Green"
 	$prompt_git_text = "Black"
 
 	# Get the current Git branch
