@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.4, E: 2024/07/25
+" R: v0.3.5, E: 2024/07/27
 
 " Simple
 set nocompatible
@@ -31,6 +31,7 @@ nnoremap <SPACE> <Nop>
 let mapleader = " "
 inoremap jk <Esc>
 inoremap <C-BS> <C-w>
+vnoremap <Leader>p "_dP
 " Strikethrough in markdown lists
 nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
 nnoremap <Leader>S _f~xxf~xx0

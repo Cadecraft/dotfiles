@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.4.9, E: 2024/07/25
+-- R: v0.5.2, E: 2024/07/27
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -41,6 +41,8 @@ vim.api.nvim_set_keymap('n', '<SPACE>', '<Nop>', { noremap = true })
 vim.g.mapleader = ' '
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-w>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<Leader>p', '"_dP', { noremap = true })
+-- Leaving the terminal easily
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true })
 -- Strikethrough in markdown lists
@@ -116,7 +118,12 @@ vim.call('plug#end')
 -- Plugins: preferences/config
 -- Misc.
 vim.g.NERDTreeChDirMode = 2
-require('lualine').setup({})
+require('lualine').setup({
+	tabline = {
+		lualine_a = {'buffers'},
+		lualine_b = {'tabs'}
+	}
+})
 -- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md>)
 local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)

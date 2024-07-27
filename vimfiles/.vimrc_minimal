@@ -1,5 +1,5 @@
 " Minimal Vimrc for Cadecraft
-" R: v0.1.2, E: 2024/07/25
+" R: v0.1.3, E: 2024/07/27
 
 " Simple, portable config with no dependency on plugins, autoloaded files, or filesystem setup
 " This is meant to be maintained alongside my vimrc and init.lua
@@ -28,6 +28,7 @@ nnoremap <SPACE> <Nop>
 let mapleader = " "
 inoremap jk <Esc>
 inoremap <C-BS> <C-w>
+vnoremap <Leader>p "_dP
 " Strikethrough in markdown lists
 nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
 nnoremap <Leader>S _f~xxf~xx0
