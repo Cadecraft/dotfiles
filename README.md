@@ -18,4 +18,5 @@ My personal dotfiles: how I store my preferences and configs for various tools.
     - Also includes minimal portable Vim config
 - Config for tmux
 - Config for Zsh
+- Config for Alacritty
 - Config for PowerShell (put under `HOME/Documents/WindowsPowerShell`)
