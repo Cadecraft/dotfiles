@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.5.3, E: 2024/07/27
+-- R: v0.5.5, E: 2024/07/30
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -96,11 +96,11 @@ Plug('nvim-lualine/lualine.nvim')
 Plug('cocopon/iceberg.vim')
 Plug('ellisonleao/gruvbox.nvim')
 Plug('rebelot/kanagawa.nvim')
-Plug('catppuccin/nvim', { as = 'catppuccin' })
--- Themes: misc.
 Plug('folke/tokyonight.nvim')
-Plug('embark-theme/vim')
 Plug('sainnhe/everforest')
+-- Themes: misc.
+Plug('catppuccin/nvim', { as = 'catppuccin' })
+Plug('embark-theme/vim', { as = 'embark' })
 Plug('nordtheme/vim')
 -- Themes: joke/showcase
 Plug('tomasiser/vim-code-dark')
@@ -114,6 +114,8 @@ Plug('neovim/nvim-lspconfig')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
 Plug('L3MON4D3/LuaSnip')
+Plug('nvim-lua/plenary.nvim')
+Plug('pmizio/typescript-tools.nvim')
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v3.x' })
 vim.call('plug#end')
 
@@ -138,6 +140,7 @@ require('lspconfig').html.setup({})
 -- require('lspconfig').js.setup({})
 require('lspconfig').cssls.setup({})
 require('lspconfig').pylsp.setup({})
+require('typescript-tools').setup({})
 -- TODO: LSPs for C++, JS/TS
 
 -- Appearance: colors
