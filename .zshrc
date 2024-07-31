@@ -1,10 +1,10 @@
 # Zsh Config (with Oh My Zsh)
-# R: v0.1.0, E: 2024/07/24
+# R: v0.2.0, E: 2024/07/29
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your Oh My Zsh installation.
+# Clone Oh My Zsh into this directory:
 export ZSH="$HOME/.oh-my-zsh"
 
 # <https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
@@ -60,12 +60,19 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
+# Configuration for plugins
+function zvm_config() {
+	ZVM_CURSOR_STYLE_ENABLED=false
+	ZVM_VI_HIGHLIGHT_BACKGROUND=blue
+	ZVM_VI_HIGHLIGHT_FOREGROUND=black
+}
+
+# Load plugins
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+# `jeffreytse/zsh-vi-mode` must be cloned into `$ZSH_CUSTOM/plugins/zsh-vi-mode`
+plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
