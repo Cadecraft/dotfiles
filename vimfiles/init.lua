@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.5.5, E: 2024/07/30
+-- R: v0.5.6, E: 2024/08/03
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -117,6 +117,7 @@ Plug('L3MON4D3/LuaSnip')
 Plug('nvim-lua/plenary.nvim')
 Plug('pmizio/typescript-tools.nvim')
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v3.x' })
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] })
 vim.call('plug#end')
 
 -- Plugins: preferences/config
@@ -126,6 +127,15 @@ require('lualine').setup({
 	tabline = {
 		lualine_a = {'buffers'},
 		lualine_b = {'tabs'}
+	}
+})
+-- TreeSitter
+-- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
+-- After installing, run: `:TSInstall javascript`, and for `cpp`, `html`
+-- Prerequisites in Windows: C compiler (ex. gcc) added to path
+require('nvim-treesitter.configs').setup({
+	highlight = {
+		enable = true
 	}
 })
 -- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md>)
