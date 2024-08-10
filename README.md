@@ -4,7 +4,7 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 
 ## Organization
 
-- Folders represent each application/category, if there are lots of files
+- Folders represent each application/category, if there are lots of files or if the filenames alone do not make it clear what application they are for
 - Otherwise, filenames should be self-explanatory; all files are listed below.
 
 ## Notes
@@ -16,6 +16,7 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 - Configs for Vim, gVim, and Neovim
     - Create the tmp folder for swapfiles under `HOME/vimfiles/tmp`
     - Also includes minimal portable Vim config
+- Config for lf terminal file manager (lfrc and icons)
 - Config for tmux
 - Config for Zsh
 - Config for Alacritty

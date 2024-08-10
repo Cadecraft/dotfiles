@@ -1,0 +1,6 @@
+# lfrc for the lf terminal file manager
+# R: v0.1.0, E: 2024/08/10
+# Requires the icons file as well
+# Windows: `C:\ProgramData\lf` or `C:\Users\<user>\AppData\Local\lf; Linux: `~/.config/lf/icons`
+
+set icons
