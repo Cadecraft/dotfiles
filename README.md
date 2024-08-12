@@ -20,4 +20,5 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 - Config for tmux
 - Config for Zsh
 - Config for Alacritty
+- Config for komorebi tiling window manager
 - Config for PowerShell (put under `HOME/Documents/WindowsPowerShell`)
