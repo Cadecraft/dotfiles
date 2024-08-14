@@ -1,5 +1,9 @@
 .shell powershell
 
+# whkd config
+# R: v0.1.0; E: 2024/08/14
+# Meant to work with komorebi and not interfere otherwise (other Windows scripts use AutoHotkey)
+
 # Reload whkd configuration
 # alt + o                 : taskkill /f /im whkd.exe && start /b whkd # if shell is cmd
 alt + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
@@ -8,7 +12,6 @@ alt + shift + o         : komorebic reload-configuration
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
 # alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
-# alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
 
 alt + q                 : komorebic close
 alt + m                 : komorebic minimize
@@ -26,9 +29,9 @@ alt + shift + h         : komorebic move left
 alt + shift + j         : komorebic move down
 alt + shift + k         : komorebic move up
 alt + shift + l         : komorebic move right
-alt + shift + return    : komorebic promote
+# alt + shift + return    : komorebic promote
 
-# Stack windows (disabled os I can use Firefox/Discord alt shortcuts)
+# Stack windows (disabled so that Firefox/Discord shortcuts work properly)
 #alt + left              : komorebic stack left
 #alt + down              : komorebic stack down
 #alt + up                : komorebic stack up
