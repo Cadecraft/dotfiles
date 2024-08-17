@@ -17,6 +17,7 @@ My personal dotfiles: how I store my preferences and configs for various tools.
     - Create the tmp folder for swapfiles under `HOME/vimfiles/tmp`
     - Also includes minimal portable Vim config
 - Config for lf terminal file manager (lfrc and icons)
+- Config for qutebrowser (config and autoload)
 - Config for the yasb status bar (config and styles)
 - Config for tmux
 - Config for Zsh
