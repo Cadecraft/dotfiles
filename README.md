@@ -20,6 +20,7 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 - Config for qutebrowser (config and autoload)
 - Config for the yasb status bar (config and styles)
 - Config for tmux
+- Config for WezTerm
 - Config for Zsh
 - Config for Alacritty
 - Config for komorebi tiling window manager

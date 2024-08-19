@@ -1,5 +1,5 @@
--- Wezterm config
--- R: v0.1.0; E: 2024/08/19
+-- WezTerm config
+-- R: v0.1.1; E: 2024/08/19
 
 -- Setup
 local wezterm = require 'wezterm'
