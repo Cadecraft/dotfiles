@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.5, E: 2024/07/27
+" R: v0.3.6, E: 2024/08/19
 
 " Simple
 set nocompatible
@@ -45,6 +45,7 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 :command Use4Space set ts=4 sw=4 expandtab
 :command Use8Tab set ts=8 sw=8 noexpandtab
 :command WritingMode set background=light breakindent linebreak
+:command HideBackground hi Normal guibg=NONE ctermbg=NONE
 
 " Plugins: install using vim-plug (requires `plug.vim` from `junegunn/vim-plug` to be in the autoload directory)
 call plug#begin()

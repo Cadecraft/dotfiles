@@ -1,5 +1,5 @@
 " Minimal Vimrc for Cadecraft
-" R: v0.1.3, E: 2024/07/27
+" R: v0.1.4, E: 2024/08/19
 
 " Simple, portable config with no dependency on plugins, autoloaded files, or filesystem setup
 " This is meant to be maintained alongside my vimrc and init.lua
@@ -42,6 +42,7 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 :command Use4Space set ts=4 sw=4 expandtab
 :command Use8Tab set ts=8 sw=8 noexpandtab
 :command WritingMode set background=light breakindent linebreak
+:command HideBackground hi Normal guibg=NONE ctermbg=NONE
 
 " Appearance: colors
 set termguicolors

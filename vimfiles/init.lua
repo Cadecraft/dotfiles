@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.5.6, E: 2024/08/03
+-- R: v0.6.1, E: 2024/08/19
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -54,6 +54,7 @@ vim.api.nvim_set_keymap('n', '<Leader>S', '_f~xxf~xx0', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
+-- TODO: smart tab for autocompletion (instead of <C-n>) ?
 -- Ctrl+L should also refresh screen
 vim.api.nvim_set_keymap('n', '<C-l>', ':redraw!<cr>:noh<cr><C-w>l', { noremap = true })
 
@@ -79,8 +80,15 @@ vim.api.nvim_create_user_command('WritingMode',
 		vim.opt.linebreak = true
 	end, {}
 )
+vim.api.nvim_create_user_command('HideBackground',
+	function()
+		vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+	end, {}
+)
 
 -- Plugins: install using `junegunn/vim-plug` (`:PlugInstall`)
+-- DO: Put plug.vim into autoload directory
+-- RUN: `:PlugInstall`
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 -- Fzf
@@ -92,6 +100,7 @@ Plug('junegunn/fzf.vim')
 Plug('preservim/nerdtree')
 Plug('airblade/vim-gitgutter')
 Plug('nvim-lualine/lualine.nvim')
+Plug('folke/zen-mode.nvim')
 -- Themes: main
 Plug('cocopon/iceberg.vim')
 Plug('ellisonleao/gruvbox.nvim')
@@ -103,12 +112,14 @@ Plug('catppuccin/nvim', { as = 'catppuccin' })
 Plug('embark-theme/vim', { as = 'embark' })
 Plug('nordtheme/vim')
 -- Themes: joke/showcase
-Plug('tomasiser/vim-code-dark')
+Plug('Mofiqul/vscode.nvim') -- Lua port of tomasiser/vim-code-dark
 Plug('dundargoc/fakedonalds.nvim')
 -- TODO: find more color schemes?
 -- Tree
 Plug('nvim-tree/nvim-tree.lua')
 Plug('ryanoasis/vim-devicons')
+-- Treesitter
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] })
 -- LSP
 Plug('neovim/nvim-lspconfig')
 Plug('hrsh7th/nvim-cmp')
@@ -117,7 +128,6 @@ Plug('L3MON4D3/LuaSnip')
 Plug('nvim-lua/plenary.nvim')
 Plug('pmizio/typescript-tools.nvim')
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v3.x' })
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] })
 vim.call('plug#end')
 
 -- Plugins: preferences/config
@@ -131,8 +141,8 @@ require('lualine').setup({
 })
 -- TreeSitter
 -- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
--- After installing, run: `:TSInstall javascript`, and for `cpp`, `html`
--- Prerequisites in Windows: C compiler (ex. gcc) added to path
+-- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
+-- RUN: `:TSInstall javascript html cpp vimdoc comment markdown markdown_inline`
 require('nvim-treesitter.configs').setup({
 	highlight = {
 		enable = true
