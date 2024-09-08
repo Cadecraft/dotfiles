@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.6, E: 2024/08/19
+" R: v0.3.7, E: 2024/09/08
 
 " Simple
 set nocompatible
@@ -35,6 +35,9 @@ vnoremap <Leader>p "_dP
 " Strikethrough in markdown lists
 nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
 nnoremap <Leader>S _f~xxf~xx0
+" Selection utilities for misc. personal use
+nnoremap <Leader>v ^vg_
+nnoremap <Leader>ma ?* <CR>wvg_
 " Window navigation
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -42,9 +45,12 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> :redraw!<cr><C-w>l
 
 " Editing: custom commands
-:command Use4Space set ts=4 sw=4 expandtab
 :command Use8Tab set ts=8 sw=8 noexpandtab
+:command Use8Space set ts=8 sw=8 expandtab
+:command Use4Tab set ts=4 sw=4 noexpandtab
+:command Use4Space set ts=4 sw=4 expandtab
 :command WritingMode set background=light breakindent linebreak
+:command ListMode set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent
 :command HideBackground hi Normal guibg=NONE ctermbg=NONE
 
 " Plugins: install using vim-plug (requires `plug.vim` from `junegunn/vim-plug` to be in the autoload directory)

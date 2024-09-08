@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.6.1, E: 2024/08/19
+-- R: v0.6.2, E: 2024/09/08
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -50,6 +50,9 @@ vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true })
 -- Strikethrough in markdown lists
 vim.api.nvim_set_keymap('n', '<Leader>s', '_wi~~<Esc>A~~<Esc>0', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>S', '_f~xxf~xx0', { noremap = true })
+-- Selection utilities for misc. personal use
+vim.api.nvim_set_keymap('n', '<Leader>v', '^vg_', { noremap = true });
+vim.api.nvim_set_keymap('n', '<Leader>ma', '?* <CR>:noh<CR>wvg_', { noremap = true });
 -- Window navigation
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
@@ -59,13 +62,6 @@ vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':redraw!<cr>:noh<cr><C-w>l', { noremap = true })
 
 -- Editing: custom commands
-vim.api.nvim_create_user_command('Use4Space',
-	function()
-		vim.opt.ts = 4
-		vim.opt.sw = 4
-		vim.opt.expandtab = true
-	end, {}
-)
 vim.api.nvim_create_user_command('Use8Tab',
 	function()
 		vim.opt.ts = 8
@@ -73,11 +69,43 @@ vim.api.nvim_create_user_command('Use8Tab',
 		vim.opt.expandtab = false
 	end, {}
 )
+vim.api.nvim_create_user_command('Use8Space',
+	function()
+		vim.opt.ts = 8
+		vim.opt.sw = 8
+		vim.opt.expandtab = true
+	end, {}
+)
+vim.api.nvim_create_user_command('Use4Tab',
+	function()
+		vim.opt.ts = 4
+		vim.opt.sw = 4
+		vim.opt.expandtab = false
+	end, {}
+)
+vim.api.nvim_create_user_command('Use4Space',
+	function()
+		vim.opt.ts = 4
+		vim.opt.sw = 4
+		vim.opt.expandtab = true
+	end, {}
+)
 vim.api.nvim_create_user_command('WritingMode',
 	function()
 		vim.opt.background = 'light'
 		vim.opt.breakindent = true
 		vim.opt.linebreak = true
+	end, {}
+)
+vim.api.nvim_create_user_command('ListMode',
+	function()
+		vim.opt.breakindent = true
+		vim.opt.linebreak = true
+		vim.opt.ts = 4
+		vim.opt.sw = 4
+		vim.opt.expandtab = false
+		vim.opt.display:append { 'lastline' }
+		vim.opt.autoindent = true
 	end, {}
 )
 vim.api.nvim_create_user_command('HideBackground',
