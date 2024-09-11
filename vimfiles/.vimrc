@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.7, E: 2024/09/08
+" R: v0.3.8, E: 2024/09/10
 
 " Simple
 set nocompatible
@@ -50,7 +50,18 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 :command Use4Tab set ts=4 sw=4 noexpandtab
 :command Use4Space set ts=4 sw=4 expandtab
 :command WritingMode set background=light breakindent linebreak
-:command ListMode set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent
+function ListModeFunction()
+	" List Mode makes editing large, formatted personal text files more ergonomic
+	" Note: this function needs only exist in this vimrc; List Mode is generally not meant to be used in Neovim
+	set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent
+	if has("gui_running")
+		" In gvim, decrease the font size and increase the window size
+		set guifont=Consolas:h10:cANSI
+		set lines=30
+		set columns=100
+	endif
+endfunction
+:command ListMode call ListModeFunction()
 :command HideBackground hi Normal guibg=NONE ctermbg=NONE
 
 " Plugins: install using vim-plug (requires `plug.vim` from `junegunn/vim-plug` to be in the autoload directory)
