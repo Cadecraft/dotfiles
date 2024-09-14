@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.9, E: 2024/09/14
+" R: v0.4.0, E: 2024/09/14
 
 " Simple
 set nocompatible
@@ -59,6 +59,7 @@ function ListModeFunction()
 		set guifont=Consolas:h10:cANSI
 		set lines=30
 		set columns=100
+		winpos 800 400
 	endif
 endfunction
 :command ListMode call ListModeFunction()
