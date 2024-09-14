@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.3.8, E: 2024/09/10
+" R: v0.3.9, E: 2024/09/14
 
 " Simple
 set nocompatible
@@ -53,7 +53,7 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 function ListModeFunction()
 	" List Mode makes editing large, formatted personal text files more ergonomic
 	" Note: this function needs only exist in this vimrc; List Mode is generally not meant to be used in Neovim
-	set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent
+	set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent ignorecase so=8
 	if has("gui_running")
 		" In gvim, decrease the font size and increase the window size
 		set guifont=Consolas:h10:cANSI
