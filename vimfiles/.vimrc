@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.4.0, E: 2024/09/14
+" R: v0.4.1, E: 2024/09/18
 
 " Simple
 set nocompatible
@@ -63,6 +63,7 @@ function ListModeFunction()
 	endif
 endfunction
 :command ListMode call ListModeFunction()
+:command MoveGvim if has("gui_running") | winpos 800 400 | endif
 :command HideBackground hi Normal guibg=NONE ctermbg=NONE
 
 " Plugins: install using vim-plug (requires `plug.vim` from `junegunn/vim-plug` to be in the autoload directory)
