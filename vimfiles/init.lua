@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.6.3, E: 2024/09/14
+-- R: v0.6.4, E: 2024/09/20
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -132,15 +132,16 @@ Plug('airblade/vim-gitgutter')
 Plug('nvim-lualine/lualine.nvim')
 Plug('folke/zen-mode.nvim')
 -- Themes: main
-Plug('cocopon/iceberg.vim')
-Plug('ellisonleao/gruvbox.nvim')
-Plug('rebelot/kanagawa.nvim')
-Plug('folke/tokyonight.nvim')
-Plug('sainnhe/everforest')
+Plug('cocopon/iceberg.vim') -- Default
+Plug('ellisonleao/gruvbox.nvim') -- Games
+Plug('rebelot/kanagawa.nvim') -- Rust
+Plug('folke/tokyonight.nvim') -- Misc.
+Plug('sainnhe/everforest') -- Web dev
 -- Themes: misc.
 Plug('catppuccin/nvim', { as = 'catppuccin' })
 Plug('embark-theme/vim', { as = 'embark' })
 Plug('nordtheme/vim')
+Plug('lewpoly/sherbet.nvim') -- C programming
 -- Themes: joke/showcase
 Plug('Mofiqul/vscode.nvim') -- Lua port of tomasiser/vim-code-dark
 Plug('dundargoc/fakedonalds.nvim')
