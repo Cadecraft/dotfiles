@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.6.5, E: 2024/09/21
+-- R: v0.6.6, E: 2024/10/10
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -126,11 +126,13 @@ Plug('junegunn/fzf', { ['do'] = function()
 	vim.fn['fzf#install']()
 end })
 Plug('junegunn/fzf.vim')
--- Misc.
+-- Misc. editor
 Plug('preservim/nerdtree')
 Plug('airblade/vim-gitgutter')
 Plug('nvim-lualine/lualine.nvim')
 Plug('folke/zen-mode.nvim')
+-- Misc. integrations
+Plug('lervag/vimtex')
 -- Themes: main
 Plug('cocopon/iceberg.vim') -- Default
 Plug('ellisonleao/gruvbox.nvim') -- Games
