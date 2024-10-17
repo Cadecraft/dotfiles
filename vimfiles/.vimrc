@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.4.1, E: 2024/09/18
+" R: v0.4.2, E: 2024/10/17
 
 " Simple
 set nocompatible
@@ -49,6 +49,7 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 :command Use8Space set ts=8 sw=8 expandtab
 :command Use4Tab set ts=4 sw=4 noexpandtab
 :command Use4Space set ts=4 sw=4 expandtab
+:command Cdcurr cd %:p:h
 :command WritingMode set background=light breakindent linebreak
 function ListModeFunction()
 	" List Mode makes editing large, formatted personal text files more ergonomic

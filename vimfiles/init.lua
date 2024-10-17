@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.6.6, E: 2024/10/10
+-- R: v0.6.7, E: 2024/10/17
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -88,6 +88,13 @@ vim.api.nvim_create_user_command('Use4Space',
 		vim.opt.ts = 4
 		vim.opt.sw = 4
 		vim.opt.expandtab = true
+	end, {}
+)
+vim.api.nvim_create_user_command('Cdcurr',
+	function()
+		vim.cmd([[
+			cd %:p:h
+		]])
 	end, {}
 )
 vim.api.nvim_create_user_command('WritingMode',
