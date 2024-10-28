@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.6.7, E: 2024/10/17
+-- R: v0.6.9, E: 2024/10/27
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -152,9 +152,11 @@ Plug('embark-theme/vim', { as = 'embark' })
 Plug('nordtheme/vim')
 Plug('lewpoly/sherbet.nvim') -- C programming (old)
 Plug('vague2k/vague.nvim') -- C programming
+Plug('AlexvZyl/nordic.nvim') -- When bored
 -- Themes: joke/showcase
 Plug('Mofiqul/vscode.nvim') -- Lua port of tomasiser/vim-code-dark
 Plug('dundargoc/fakedonalds.nvim')
+Plug('jamescherti/vim-tomorrow-night-deepblue')
 -- TODO: find more color schemes?
 -- Tree
 Plug('nvim-tree/nvim-tree.lua')
