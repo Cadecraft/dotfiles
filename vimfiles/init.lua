@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.6.9, E: 2024/10/27
+-- R: v0.7.0, E: 2024/11/01
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -185,8 +185,21 @@ require('lualine').setup({
 -- TreeSitter
 -- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
 -- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
--- RUN: `:TSInstall javascript html cpp vimdoc comment markdown markdown_inline`
 require('nvim-treesitter.configs').setup({
+	ensure_installed = {
+		"javascript",
+		"html",
+		"css",
+		"cpp",
+		"vimdoc",
+		"comment",
+		"markdown",
+		"markdown_inline",
+		"python",
+		"rust",
+		"java",
+		"c"
+	},
 	highlight = {
 		enable = true
 	}
