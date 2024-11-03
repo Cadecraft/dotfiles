@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.0, E: 2024/11/01
+-- R: v0.7.3, E: 2024/11/03
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -152,7 +152,8 @@ Plug('embark-theme/vim', { as = 'embark' })
 Plug('nordtheme/vim')
 Plug('lewpoly/sherbet.nvim') -- C programming (old)
 Plug('vague2k/vague.nvim') -- C programming
-Plug('AlexvZyl/nordic.nvim') -- When bored
+Plug('AlexvZyl/nordic.nvim') -- When bored (also C programming)
+Plug('savq/melange-nvim') -- Warmer
 -- Themes: joke/showcase
 Plug('Mofiqul/vscode.nvim') -- Lua port of tomasiser/vim-code-dark
 Plug('dundargoc/fakedonalds.nvim')
@@ -163,7 +164,7 @@ Plug('nvim-tree/nvim-tree.lua')
 Plug('ryanoasis/vim-devicons')
 -- Treesitter
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] })
--- LSP
+-- LSP and languages
 Plug('neovim/nvim-lspconfig')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
@@ -171,6 +172,7 @@ Plug('L3MON4D3/LuaSnip')
 Plug('nvim-lua/plenary.nvim')
 Plug('pmizio/typescript-tools.nvim')
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v3.x' })
+Plug('MaxMEllon/vim-jsx-pretty')
 vim.call('plug#end')
 
 -- Plugins: preferences/config
@@ -202,6 +204,12 @@ require('nvim-treesitter.configs').setup({
 	},
 	highlight = {
 		enable = true
+	},
+	indent = {
+		-- Disable the inbuilt indent for all treesitter languages except js/ts
+		-- This partly solves the indent issue for jsx files
+		enable = true,
+		disable = { "html", "css", "cpp", "vimdoc", "comment", "markdown", "markdown_inline", "python", "rust", "java", "c" }
 	}
 })
 -- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md>)
