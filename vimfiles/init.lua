@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.3, E: 2024/11/03
+-- R: v0.7.4, E: 2024/11/26
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -173,6 +173,7 @@ Plug('nvim-lua/plenary.nvim')
 Plug('pmizio/typescript-tools.nvim')
 Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v3.x' })
 Plug('MaxMEllon/vim-jsx-pretty')
+Plug('MunifTanjim/eslint.nvim')
 vim.call('plug#end')
 
 -- Plugins: preferences/config
@@ -225,6 +226,19 @@ require('lspconfig').html.setup({})
 require('lspconfig').cssls.setup({})
 require('lspconfig').pylsp.setup({})
 require('typescript-tools').setup({})
+require('eslint').setup({
+	bin = 'eslint',
+	code_actions = {
+		enable = true,
+		apply_on_save = {
+			enable = false,
+			types = {},
+		},
+	},
+	diagnostics = {
+		enable = true,
+	},
+})
 -- TODO: LSPs for C++, JS/TS
 
 -- Appearance: colors
