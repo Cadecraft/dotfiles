@@ -1,5 +1,5 @@
 " Minimal Vimrc for Cadecraft
-" R: v0.1.7, E: 2024/10/17
+" R: v0.1.8, E: 2024/12/01
 
 " Simple, portable config with no dependency on plugins, autoloaded files, or filesystem setup
 " This is meant to be maintained alongside my vimrc and init.lua
@@ -46,6 +46,8 @@ nnoremap <C-l> :redraw!<cr><C-w>l
 :command Use8Space set ts=8 sw=8 expandtab
 :command Use4Tab set ts=4 sw=4 noexpandtab
 :command Use4Space set ts=4 sw=4 expandtab
+:command Use2Tab set ts=2 sw=2 noexpandtab
+:command Use2Space set ts=2 sw=2 expandtab
 :command Cdcurr cd %:p:h
 :command WritingMode set background=light breakindent linebreak
 :command ListMode set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent ignorecase so=8

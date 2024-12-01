@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.4, E: 2024/11/26
+-- R: v0.7.5, E: 2024/12/01
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -87,6 +87,20 @@ vim.api.nvim_create_user_command('Use4Space',
 	function()
 		vim.opt.ts = 4
 		vim.opt.sw = 4
+		vim.opt.expandtab = true
+	end, {}
+)
+vim.api.nvim_create_user_command('Use2Tab',
+	function()
+		vim.opt.ts = 2
+		vim.opt.sw = 2
+		vim.opt.expandtab = false
+	end, {}
+)
+vim.api.nvim_create_user_command('Use2Space',
+	function()
+		vim.opt.ts = 2
+		vim.opt.sw = 2
 		vim.opt.expandtab = true
 	end, {}
 )
