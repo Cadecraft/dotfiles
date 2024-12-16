@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.6, E: 2024/12/14
+-- R: v0.7.7, E: 2024/12/16
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -240,6 +240,7 @@ require('lspconfig').html.setup({})
 -- require('lspconfig').js.setup({})
 require('lspconfig').cssls.setup({})
 require('lspconfig').pylsp.setup({})
+require('lspconfig').clangd.setup({})
 require('typescript-tools').setup({})
 require('eslint').setup({
 	bin = 'eslint',
