@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.7, E: 2024/12/16
+-- R: v0.7.8, E: 2024/12/25
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -278,4 +278,16 @@ if vim.g.neovide then
 	vim.g.airline_powerline_fonts = 1
 	-- Fullscreen with F11
 	vim.api.nvim_set_keymap('n', '<F11>', ':let g:neovide_fullscreen = !g:neovide_fullscreen<CR>', {})
+	-- Disable animations with a command
+	vim.api.nvim_create_user_command('DisableAnimationsNeovide',
+		function()
+			vim.g.neovide_position_animation_length = 0
+			vim.g.neovide_cursor_animation_length = 0.00
+			vim.g.neovide_cursor_trail_size = 0
+			vim.g.neovide_cursor_animate_in_insert_mode = false
+			vim.g.neovide_cursor_animate_command_line = false
+			vim.g.neovide_scroll_animation_far_lines = 0
+			vim.g.neovide_scroll_animation_length = 0.00
+		end, {}
+	)
 end
