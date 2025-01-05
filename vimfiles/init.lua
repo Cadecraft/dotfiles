@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.8, E: 2024/12/25
+-- R: v0.7.10, E: 2025/01/04
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -147,6 +147,7 @@ Plug('junegunn/fzf', { ['do'] = function()
 	vim.fn['fzf#install']()
 end })
 Plug('junegunn/fzf.vim')
+Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
 -- Misc. editor
 Plug('preservim/nerdtree')
 Plug('lewis6991/gitsigns.nvim')
@@ -172,6 +173,7 @@ Plug('savq/melange-nvim') -- Warmer
 Plug('Mofiqul/vscode.nvim') -- Lua port of tomasiser/vim-code-dark
 Plug('dundargoc/fakedonalds.nvim')
 Plug('jamescherti/vim-tomorrow-night-deepblue')
+Plug('xiantang/darcula-dark.nvim') -- Nvim port of the JetBrains colorscheme
 -- TODO: find more color schemes?
 -- Tree
 Plug('nvim-tree/nvim-tree.lua')
@@ -200,6 +202,9 @@ require('lualine').setup({
 	}
 })
 require('gitsigns').setup()
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 -- TreeSitter
 -- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
 -- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
@@ -263,6 +268,7 @@ vim.opt.background = 'dark'
 -- Use iceberg, with sorbet as a built-in backup
 vim.cmd('colorscheme sorbet')
 vim.cmd('colorscheme iceberg')
+-- TODO: Customize fzf colors to respect my color scheme?
 
 -- Neovide GUI configuration
 if vim.g.neovide then
