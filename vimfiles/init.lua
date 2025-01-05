@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.10, E: 2025/01/04
+-- R: v0.7.11, E: 2025/01/04
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -296,4 +296,13 @@ if vim.g.neovide then
 			vim.g.neovide_scroll_animation_length = 0.00
 		end, {}
 	)
+	-- Fake PyCharm
+	vim.api.nvim_create_user_command('FakePycharm',
+	function()
+		vim.cmd('colorscheme darcula-dark')
+		vim.opt.guifont = 'Jetbrains Mono:h11'
+		vim.opt.title = true
+		vim.opt.titlestring = 'PyCharm'
+	end, {}
+)
 end
