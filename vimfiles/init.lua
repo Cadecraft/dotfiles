@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.7.11, E: 2025/01/04
+-- R: v0.8.0, E: 2025/02/07
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -16,6 +16,23 @@ if vim.fn.has('macunix') == 0 then
 	vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
 	vim.o.shellxquote = ''
 end
+
+-- Bootstrap lazy.nvim (source: <https://lazy.folke.io/installation>)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
 
 -- Appearance: preferences
 vim.opt.number = true
@@ -34,13 +51,13 @@ vim.api.nvim_create_autocmd('BufEnter', {
 	end,
 	desc = 'Disable auto-commenting the next line'
 })
--- TODO: test that disable continued comments works
 -- To switch buffers
 vim.opt.hidden = true
 
 -- Editing: remaps
 vim.api.nvim_set_keymap('n', '<SPACE>', '<Nop>', { noremap = true })
 vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-w>', { noremap = true })
 vim.api.nvim_set_keymap('v', '<Leader>p', '"_dP', { noremap = true })
@@ -57,7 +74,6 @@ vim.api.nvim_set_keymap('n', '<Leader>ma', '?* <CR>:noh<CR>wvg_', { noremap = tr
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
--- TODO: smart tab for autocompletion (instead of <C-n>) ?
 -- Ctrl+L should also refresh screen
 vim.api.nvim_set_keymap('n', '<C-l>', ':redraw!<cr>:noh<cr><C-w>l', { noremap = true })
 
@@ -137,64 +153,113 @@ vim.api.nvim_create_user_command('HideBackground',
 	end, {}
 )
 
--- Plugins: install using `junegunn/vim-plug` (`:PlugInstall`)
--- DO: Put plug.vim into autoload directory
--- RUN: `:PlugInstall`
-local Plug = vim.fn['plug#']
-vim.call('plug#begin')
--- Fzf
-Plug('junegunn/fzf', { ['do'] = function()
-	vim.fn['fzf#install']()
-end })
-Plug('junegunn/fzf.vim')
-Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
--- Misc. editor
-Plug('preservim/nerdtree')
-Plug('lewis6991/gitsigns.nvim')
-Plug('nvim-lualine/lualine.nvim')
-Plug('folke/zen-mode.nvim')
--- Misc. integrations
-Plug('lervag/vimtex')
--- Themes: main
-Plug('oahlen/iceberg.nvim') -- Default
-Plug('ellisonleao/gruvbox.nvim') -- Games
-Plug('rebelot/kanagawa.nvim') -- Rust
-Plug('folke/tokyonight.nvim') -- Misc.
-Plug('sainnhe/everforest') -- Web dev
--- Themes: misc.
-Plug('catppuccin/nvim', { as = 'catppuccin' })
-Plug('embark-theme/vim', { as = 'embark' })
-Plug('nordtheme/vim')
-Plug('lewpoly/sherbet.nvim') -- C programming (old)
-Plug('vague2k/vague.nvim') -- C programming
-Plug('AlexvZyl/nordic.nvim') -- When bored (also C programming)
-Plug('savq/melange-nvim') -- Warmer
--- Themes: joke/showcase
-Plug('Mofiqul/vscode.nvim') -- Lua port of tomasiser/vim-code-dark
-Plug('dundargoc/fakedonalds.nvim')
-Plug('jamescherti/vim-tomorrow-night-deepblue')
-Plug('xiantang/darcula-dark.nvim') -- Nvim port of the JetBrains colorscheme
--- TODO: find more color schemes?
--- Tree
-Plug('nvim-tree/nvim-tree.lua')
-Plug('ryanoasis/vim-devicons')
--- Treesitter
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn['TSUpdate'] })
--- LSP and languages
-Plug('neovim/nvim-lspconfig')
-Plug('hrsh7th/nvim-cmp')
-Plug('hrsh7th/cmp-nvim-lsp')
-Plug('L3MON4D3/LuaSnip')
-Plug('nvim-lua/plenary.nvim')
-Plug('pmizio/typescript-tools.nvim')
-Plug('VonHeikemen/lsp-zero.nvim', { branch = 'v3.x' })
-Plug('MaxMEllon/vim-jsx-pretty')
-Plug('MunifTanjim/eslint.nvim')
-vim.call('plug#end')
+require("lazy").setup({
+	spec = {
+		-- Fuzzy finding
+		{
+			'nvim-telescope/telescope.nvim', tag = '0.1.8',
+			dependencies = { 'nvim-lua/plenary.nvim' }
+		},
+		-- Misc. editor
+		{ "preservim/nerdtree" },
+		{ "lewis6991/gitsigns.nvim" },
+		{
+			'nvim-lualine/lualine.nvim',
+			dependencies = { 'nvim-tree/nvim-web-devicons' }
+		},
+		{ 'folke/zen-mode.nvim' },
+		-- Misc. integrations
+		{ 'lervag/vimtex' },
+		-- Themes: main
+		{ 'oahlen/iceberg.nvim' }, -- Default
+		{ 'ellisonleao/gruvbox.nvim' }, -- Games
+		{ 'rebelot/kanagawa.nvim' }, -- Rust
+		{ 'folke/tokyonight.nvim' }, -- Misc.
+		{ 'sainnhe/everforest' }, -- Web dev
+		-- Themes: misc.
+		{ 'catppuccin/nvim', name = 'catppuccin' },
+		{ 'embark-theme/vim', name = 'embark' },
+		{ 'nordtheme/vim' },
+		{ 'lewpoly/sherbet.nvim' }, -- C programming (old)
+		{ 'vague2k/vague.nvim' }, -- C programming
+		{ 'AlexvZyl/nordic.nvim' }, -- When bored (also C programming)
+		{ 'savq/melange-nvim' }, -- Warmer
+		-- Themes: joke/showcase
+		{ 'Mofiqul/vscode.nvim' }, -- Lua port of tomasiser/vim-code-dark
+		{ 'dundargoc/fakedonalds.nvim' },
+		{ 'jamescherti/vim-tomorrow-night-deepblue' },
+		{ 'xiantang/darcula-dark.nvim' }, -- Nvim port of the JetBrains colorscheme
+		-- TODO: find more color schemes?
+		-- Tree
+		{ 'nvim-tree/nvim-tree.lua' },
+		{ 'ryanoasis/vim-devicons' },
+		-- Treesitter
+		{
+			'nvim-treesitter/nvim-treesitter',
+			build = ":TSUpdate",
+			config = function ()
+				local configs = require("nvim-treesitter.configs")
+				-- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
+				-- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
+				configs.setup({
+					ensure_installed = {
+						"javascript",
+						"html",
+						"css",
+						"cpp",
+						"vimdoc",
+						"comment",
+						"markdown",
+						"markdown_inline",
+						"python",
+						"rust",
+						"java",
+						"c"
+					},
+					highlight = {
+						enable = true
+					},
+					indent = {
+						-- Disable the inbuilt indent for all treesitter languages except js/ts
+						-- This partly solves the indent issue for jsx files
+						enable = true,
+						disable = {
+							"html",
+							"css",
+							"cpp",
+							"vimdoc",
+							"comment",
+							"markdown",
+							"markdown_inline",
+							"python",
+							"rust",
+							"java",
+							"c"
+						}
+					}
+				})
+			end
+		},
+		-- LSP and languages
+		{ 'neovim/nvim-lspconfig' },
+		{ 'hrsh7th/nvim-cmp' },
+		{ 'hrsh7th/cmp-nvim-lsp' },
+		{ 'L3MON4D3/LuaSnip' },
+		{ 'nvim-lua/plenary.nvim' },
+		{ 'pmizio/typescript-tools.nvim' },
+		{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
+		{ 'MaxMEllon/vim-jsx-pretty' },
+		{ 'MunifTanjim/eslint.nvim' },
+	},
+	checker = { enabled = true, notify = false },
+})
 
 -- Plugins: preferences/config
 -- Misc.
 vim.g.NERDTreeChDirMode = 2
+if vim.fn.exists('g:loaded_webdevicons') then
+	vim.cmd('call webdevicons#refresh()')
+end
 require('lualine').setup({
 	tabline = {
 		lualine_a = {'buffers'},
@@ -205,34 +270,7 @@ require('gitsigns').setup()
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
--- TreeSitter
--- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
--- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
-require('nvim-treesitter.configs').setup({
-	ensure_installed = {
-		"javascript",
-		"html",
-		"css",
-		"cpp",
-		"vimdoc",
-		"comment",
-		"markdown",
-		"markdown_inline",
-		"python",
-		"rust",
-		"java",
-		"c"
-	},
-	highlight = {
-		enable = true
-	},
-	indent = {
-		-- Disable the inbuilt indent for all treesitter languages except js/ts
-		-- This partly solves the indent issue for jsx files
-		enable = true,
-		disable = { "html", "css", "cpp", "vimdoc", "comment", "markdown", "markdown_inline", "python", "rust", "java", "c" }
-	}
-})
+
 -- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md>)
 local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
@@ -260,7 +298,6 @@ require('eslint').setup({
 		enable = true,
 	},
 })
--- TODO: LSPs for C++, JS/TS
 
 -- Appearance: colors
 vim.opt.termguicolors = true
@@ -268,7 +305,6 @@ vim.opt.background = 'dark'
 -- Use iceberg, with sorbet as a built-in backup
 vim.cmd('colorscheme sorbet')
 vim.cmd('colorscheme iceberg')
--- TODO: Customize fzf colors to respect my color scheme?
 
 -- Neovide GUI configuration
 if vim.g.neovide then
