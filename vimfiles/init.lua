@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.0, E: 2025/02/07
+-- R: v0.8.1, E: 2025/02/07
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -16,6 +16,10 @@ if vim.fn.has('macunix') == 0 then
 	vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
 	vim.o.shellxquote = ''
 end
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Bootstrap lazy.nvim (source: <https://lazy.folke.io/installation>)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -161,7 +165,15 @@ require("lazy").setup({
 			dependencies = { 'nvim-lua/plenary.nvim' }
 		},
 		-- Misc. editor
-		{ "preservim/nerdtree" },
+		{
+			"nvim-tree/nvim-tree.lua",
+			dependencies = {
+				"nvim-tree/nvim-web-devicons"
+			},
+			config = function()
+				require("nvim-tree").setup {}
+			end
+		},
 		{ "lewis6991/gitsigns.nvim" },
 		{
 			'nvim-lualine/lualine.nvim',
@@ -256,7 +268,7 @@ require("lazy").setup({
 
 -- Plugins: preferences/config
 -- Misc.
-vim.g.NERDTreeChDirMode = 2
+--vim.g.NERDTreeChDirMode = 2
 if vim.fn.exists('g:loaded_webdevicons') then
 	vim.cmd('call webdevicons#refresh()')
 end
@@ -267,6 +279,14 @@ require('lualine').setup({
 	}
 })
 require('gitsigns').setup()
+require('telescope').setup({
+	defaults = {
+		file_ignore_patterns = {
+			".git",
+			"node_modules"
+		}
+	}
+})
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
