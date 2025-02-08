@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.1, E: 2025/02/07
+-- R: v0.8.2, E: 2025/02/07
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -279,6 +279,8 @@ require('lualine').setup({
 	}
 })
 require('gitsigns').setup()
+-- Telescope setup and shortcuts
+-- DO: install ripgrep (for live grep)
 require('telescope').setup({
 	defaults = {
 		file_ignore_patterns = {
@@ -289,6 +291,7 @@ require('telescope').setup({
 })
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 
 -- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md>)
