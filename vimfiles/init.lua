@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.2, E: 2025/02/07
+-- R: v0.8.3, E: 2025/02/10
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -80,6 +80,8 @@ vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
 -- Ctrl+L should also refresh screen
 vim.api.nvim_set_keymap('n', '<C-l>', ':redraw!<cr>:noh<cr><C-w>l', { noremap = true })
+-- Efficiently create a new terminal in a new tab and start appending to the input
+vim.api.nvim_set_keymap('n', '<Leader>tt', ':tabnew | term<cr>a<C-l>', { noremap = true })
 
 -- Editing: custom commands
 vim.api.nvim_create_user_command('Use8Tab',
