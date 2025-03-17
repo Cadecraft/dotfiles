@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.3, E: 2025/02/10
+-- R: v0.8.4, E: 2025/03/17
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -11,7 +11,7 @@ vim.opt.backupdir = { prefix .. '/.tmp//' }
 vim.opt.directory = { prefix .. '/.tmp//' }
 
 -- Use PowerShell in Windows
-if vim.fn.has('macunix') == 0 then
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
 	vim.o.shell = "powershell.exe"
 	vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
 	vim.o.shellxquote = ''
@@ -173,7 +173,11 @@ require("lazy").setup({
 				"nvim-tree/nvim-web-devicons"
 			},
 			config = function()
-				require("nvim-tree").setup {}
+				require("nvim-tree").setup {
+					filters = {
+						dotfiles = false
+					}
+				}
 			end
 		},
 		{ "lewis6991/gitsigns.nvim" },
