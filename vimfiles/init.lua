@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.4, E: 2025/03/17
+-- R: v0.8.5, E: 2025/03/21
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -186,6 +186,7 @@ require("lazy").setup({
 			dependencies = { 'nvim-tree/nvim-web-devicons' }
 		},
 		{ 'folke/zen-mode.nvim' },
+		{ 'tpope/vim-surround' },
 		-- Misc. integrations
 		{ 'lervag/vimtex' },
 		-- Themes: main
