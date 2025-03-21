@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.4.3, E: 2024/12/01
+" R: v0.4.4, E: 2025/03/21
 
 " Simple
 set nocompatible
@@ -78,6 +78,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-surround'
 " Themes
 Plug 'cocopon/iceberg.vim'
 Plug 'embark-theme/vim'
