@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.5, E: 2025/03/21
+-- R: v0.8.6, E: 2025/03/22
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -268,6 +268,7 @@ require("lazy").setup({
 		{ 'pmizio/typescript-tools.nvim' },
 		{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
 		{ 'MaxMEllon/vim-jsx-pretty' },
+		{ 'jose-elias-alvarez/null-ls.nvim' },
 		{ 'MunifTanjim/eslint.nvim' },
 	},
 	checker = { enabled = true, notify = false },
@@ -315,6 +316,8 @@ require('lspconfig').cssls.setup({})
 require('lspconfig').pylsp.setup({})
 require('lspconfig').clangd.setup({})
 require('typescript-tools').setup({})
+-- Note: for eslint to display errors in diagnostics, downgrade (npm i -g vscode-langservers-extracted@4.8.0)
+require('null-ls').setup({})
 require('eslint').setup({
 	bin = 'eslint',
 	code_actions = {
