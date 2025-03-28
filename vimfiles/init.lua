@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.6, E: 2025/03/22
+-- R: v0.8.7, E: 2025/03/28
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -65,6 +65,8 @@ vim.g.maplocalleader = '\\'
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-BS>', '<C-w>', { noremap = true })
 vim.api.nvim_set_keymap('v', '<Leader>p', '"_dP', { noremap = true })
+-- Diagnostics
+vim.api.nvim_set_keymap('n', '<Leader>K', ':lua vim.diagnostic.open_float()<CR>', { noremap = true })
 -- Leaving the terminal easily
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true })
