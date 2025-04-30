@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.7, E: 2025/03/28
+-- R: v0.8.8, E: 2025/04/30
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -270,8 +270,6 @@ require("lazy").setup({
 		{ 'pmizio/typescript-tools.nvim' },
 		{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
 		{ 'MaxMEllon/vim-jsx-pretty' },
-		{ 'jose-elias-alvarez/null-ls.nvim' },
-		{ 'MunifTanjim/eslint.nvim' },
 	},
 	checker = { enabled = true, notify = false },
 })
@@ -317,22 +315,14 @@ require('lspconfig').html.setup({})
 require('lspconfig').cssls.setup({})
 require('lspconfig').pylsp.setup({})
 require('lspconfig').clangd.setup({})
-require('typescript-tools').setup({})
--- Note: for eslint to display errors in diagnostics, downgrade (npm i -g vscode-langservers-extracted@4.8.0)
-require('null-ls').setup({})
-require('eslint').setup({
-	bin = 'eslint',
-	code_actions = {
-		enable = true,
-		apply_on_save = {
-			enable = false,
-			types = {},
-		},
-	},
-	diagnostics = {
-		enable = true,
-	},
+-- Note: for eslint to display errors in diagnostics, may need to downgrade? (npm i -g vscode-langservers-extracted@4.8.0)
+require('lspconfig').eslint.setup({
+	flags = {
+		allow_incremental_sync = false,
+		debounce_text_changes = 1000,
+	}
 })
+require('typescript-tools').setup({})
 
 -- Appearance: colors
 vim.opt.termguicolors = true
