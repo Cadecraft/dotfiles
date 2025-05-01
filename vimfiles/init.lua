@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.8, E: 2025/04/30
+-- R: v0.8.9, E: 2025/04/30
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -69,6 +69,7 @@ vim.api.nvim_set_keymap('v', '<Leader>p', '"_dP', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>K', ':lua vim.diagnostic.open_float()<CR>', { noremap = true })
 -- Leaving the terminal easily
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+vim.api.nvim_set_keymap('t', '<C-[>', '<C-\\><C-n>', { noremap = true }) -- Neovide maps these differently
 vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true })
 -- Strikethrough in markdown lists
 vim.api.nvim_set_keymap('n', '<Leader>s', '_wi~~<Esc>A~~<Esc>0', { noremap = true })
