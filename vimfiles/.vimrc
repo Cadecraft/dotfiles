@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.4.4, E: 2025/03/21
+" R: v0.5.0, E: 2025/06/23
 
 " Simple
 set nocompatible
@@ -43,14 +43,25 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> :redraw!<cr><C-w>l
+" Indentation options (ex. `<Leader>i2s` => sets indentation to 2 spaces)
+for use_spaces in [0, 1]
+	for indent_size in range(2, 9, 2)
+		execute join([
+			\"nnoremap <Leader>i",
+			\indent_size,
+			\(use_spaces ? "s" : "t"),
+			\" :set ts=",
+			\indent_size,
+			\" sw=",
+			\indent_size,
+			\" ",
+			\(use_spaces ? "expandtab" : "noexpandtab"),
+			\"<CR>"
+		\], "")
+	endfor
+endfor
 
 " Editing: custom commands
-:command Use8Tab set ts=8 sw=8 noexpandtab
-:command Use8Space set ts=8 sw=8 expandtab
-:command Use4Tab set ts=4 sw=4 noexpandtab
-:command Use4Space set ts=4 sw=4 expandtab
-:command Use2Tab set ts=2 sw=2 noexpandtab
-:command Use2Space set ts=2 sw=2 expandtab
 :command Cdcurr cd %:p:h
 :command WritingMode set background=light breakindent linebreak
 function ListModeFunction()

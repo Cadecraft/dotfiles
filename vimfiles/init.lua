@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.8.9, E: 2025/04/30
+-- R: v0.9.0, E: 2025/06/23
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -85,50 +85,30 @@ vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':redraw!<cr>:noh<cr><C-w>l', { noremap = true })
 -- Efficiently create a new terminal in a new tab and start appending to the input
 vim.api.nvim_set_keymap('n', '<Leader>tt', ':tabnew | term<cr>a<C-l>', { noremap = true })
+-- Indentation options (ex. `<Leader>i2s` => sets indentation to 2 spaces)
+use_spaces_options = { true, false }
+for _, use_spaces in ipairs(use_spaces_options) do
+	for indent_size = 2,8,2 do
+		vim.keymap.set('n', '<Leader>i' .. tostring(indent_size) .. (use_spaces and 's' or 't'),
+			function()
+				vim.opt.ts = indent_size
+				vim.opt.sw = indent_size
+				vim.opt.expandtab = use_spaces
+			end, { noremap = true }
+		)
+	end
+end
+-- Quick color scheme changes (ex. `<Leader>ce` => sets the theme to `everforest`)
+local colorschemes_hotkeys = {
+	["e"] = "everforest",
+	["i"] = "iceberg",
+	["t"] = "tokyonight"
+}
+for hotkey, scheme in pairs(colorschemes_hotkeys) do
+	vim.api.nvim_set_keymap('n', '<Leader>c' .. hotkey, ':colorscheme ' .. scheme .. '<CR>', { noremap = true })
+end
 
 -- Editing: custom commands
-vim.api.nvim_create_user_command('Use8Tab',
-	function()
-		vim.opt.ts = 8
-		vim.opt.sw = 8
-		vim.opt.expandtab = false
-	end, {}
-)
-vim.api.nvim_create_user_command('Use8Space',
-	function()
-		vim.opt.ts = 8
-		vim.opt.sw = 8
-		vim.opt.expandtab = true
-	end, {}
-)
-vim.api.nvim_create_user_command('Use4Tab',
-	function()
-		vim.opt.ts = 4
-		vim.opt.sw = 4
-		vim.opt.expandtab = false
-	end, {}
-)
-vim.api.nvim_create_user_command('Use4Space',
-	function()
-		vim.opt.ts = 4
-		vim.opt.sw = 4
-		vim.opt.expandtab = true
-	end, {}
-)
-vim.api.nvim_create_user_command('Use2Tab',
-	function()
-		vim.opt.ts = 2
-		vim.opt.sw = 2
-		vim.opt.expandtab = false
-	end, {}
-)
-vim.api.nvim_create_user_command('Use2Space',
-	function()
-		vim.opt.ts = 2
-		vim.opt.sw = 2
-		vim.opt.expandtab = true
-	end, {}
-)
 vim.api.nvim_create_user_command('Cdcurr',
 	function()
 		vim.cmd([[
