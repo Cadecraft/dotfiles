@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.5.0, E: 2025/06/23
+" R: v0.5.1, E: 2025/06/26
 
 " Simple
 set nocompatible
@@ -60,6 +60,9 @@ for use_spaces in [0, 1]
 		\], "")
 	endfor
 endfor
+" Quick calling custom commands
+nnoremap <Leader>ll :ListMode<CR>
+nnoremap <Leader>ww :WritingMode<CR>
 
 " Editing: custom commands
 :command Cdcurr cd %:p:h
