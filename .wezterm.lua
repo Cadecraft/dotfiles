@@ -1,5 +1,5 @@
 -- Wezterm config
--- R: v0.1.2; E: 2024/09/20
+-- R: v0.1.3; E: 2025/07/12
 
 -- Setup
 local wezterm = require 'wezterm'
@@ -11,6 +11,9 @@ config.default_prog = { 'powershell.exe' }
 -- Window
 config.initial_cols = 110;
 config.initial_rows = 30;
+
+-- For Linux/Hyprland
+config.enable_wayland = false;
 
 -- Appearance: misc.
 config.color_scheme = 'iceberg-dark'
