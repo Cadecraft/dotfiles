@@ -30,3 +30,5 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 - Config for Alacritty
 - Config for komorebi tiling window manager
 - Config for PowerShell (put under `~/Documents/WindowsPowerShell`)
+- Config for Hyprland
+- Config for Waybar
