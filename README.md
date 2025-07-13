@@ -31,4 +31,6 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 - Config for komorebi tiling window manager
 - Config for PowerShell (put under `~/Documents/WindowsPowerShell`)
 - Config for Hyprland
+    - Relies on Wezterm, Wofi, Waybar, Swaybg, Cadecraft/remslice, and others
 - Config for Waybar
+- Config for Wofi (styles)

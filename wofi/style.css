@@ -1,0 +1,60 @@
+/* Wofi styles
+R: v0.1.0; E: 2025/07/13 */
+@define-color bg-main rgb(18, 18, 27);
+@define-color bg-light rgb(36, 36, 51);
+@define-color border rgb(48, 48, 68);
+@define-color text-bright rgb(240, 240, 240);
+@define-color text-faint rgb(126, 126, 150);
+
+window {
+    margin: 0px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: @bg-main;
+}
+
+#inner-box {
+    margin: 8px;
+    padding: 0px;
+    background-color: @bg-main;
+    border-radius: 8px;
+}
+
+#input {
+    background-color: @bg-main;
+    border: none;
+    border-radius: 0px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: solid 1px @border;
+    padding: 4px 10px;
+}
+#input:active, #input:focus {
+    box-shadow: none;
+}
+#input * {
+    border: none;
+    outline: none;
+}
+#input image {
+    border: none;
+    color: @border;
+}
+
+#entry {
+    background-color: @bg-main;
+    color: @text-faint;
+    padding: 8px 8px;
+    border-radius: 8px;
+}
+#entry:selected {
+    background-color: @bg-light;
+    color: @text-bright;
+}
+#entry arrow {
+    border: none;
+    color: @border;
+}
+#entry:selected arrow {
+    color: @text-bright;
+}
