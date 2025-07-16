@@ -1,18 +1,33 @@
 /* Waybar style.css
-R: v0.1.0; E: 2025/07/13 */
+R: v0.2.1; E: 2025/07/15 */
+
+@define-color bgcolor rgba(43, 43, 59, 0.5);
+@define-color surface rgb(19, 19, 30);
+@define-color surfacefaint rgba(19, 19, 30, 0.5);
+@define-color text rgba(255, 255, 255, 0.9);
+@define-color textdark rgba(10, 10, 14, 0.9);
+/* Iceberg color palette thanks to cocopon/iceberg.vim */
+@define-color iceberg #598fe0;
+@define-color iceberg-blue #85a0c7;
+@define-color iceberg-green #b8c587;
+@define-color iceberg-lblue #89b9c2;
+@define-color iceberg-orange #e2a578;
+@define-color iceberg-purple #a093c8;
+@define-color iceberg-red #e17a7a;
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: monospace;/*, FontAwesome, Roboto, Helvetica, Arial, sans-serif, monospace;*/
     font-size: 13px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
-    color: #ffffff;
+    background-color: @bgcolor;
+    color: @text;
     transition-property: background-color;
     transition-duration: .5s;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
 }
 
 window#waybar.hidden {
@@ -48,34 +63,45 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
+    box-shadow: inset 0 -3px transparent;
 }
 
 #workspaces button {
-    padding: 0 4px;
-    background-color: transparent;
-    color: #ffffff;
-    margin: 4px 0px;
-    border-radius: 8px;
+    padding: 0 5px;
+    padding-bottom: 1px;
+    background-color: @surfacefaint;
+    color: @text;
+    margin: 4px 2px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#workspaces button:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#workspaces button:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
 }
 
-/*#workspaces button.focused {*/
-#workspaces button.active {
-    background-color: #64727D;
-    /*box-shadow: inset 0 -3px #ffffff;*/
+#workspaces button.active, #workspaces button:focus {
+    background-color: @iceberg-lblue;
+    color: @textdark;
+    padding: 0 12px;
+    margin: 4px 2px;
+    font-family: monospace;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: @iceberg-red;
 }
 
 #mode {
@@ -99,11 +125,13 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#custom-power,
 #mpd {
     padding: 0px 10px;
-    color: #ffffff;
-    border-radius: 8px;
+    color: @text;
+    border-radius: 4px;
     margin: 4px 0px;
+    background-color: @surface;
 }
 
 #window,
@@ -113,7 +141,7 @@ button:hover {
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 4px;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
@@ -121,18 +149,26 @@ button:hover {
     margin-right: 0;
 }
 
+/* Right modules end caps */
+#idle_inhibitor {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+#custom-power {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 #clock {
-    background-color: #64727D;
+    color: @iceberg-lblue;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    color: @iceberg-orange;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @iceberg-green;
 }
 
 @keyframes blink {
@@ -144,7 +180,7 @@ button:hover {
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+    background-color: @iceberg-red;
     color: #ffffff;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -154,22 +190,19 @@ button:hover {
 }
 
 #power-profiles-daemon {
-    padding-right: 15px;
+    padding-right: 10px;
 }
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
+    color: @iceberg-red;
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+    color: @iceberg-blue;
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
+    color: @iceberg-green;
 }
 
 label:focus {
@@ -194,21 +227,24 @@ label:focus {
 }
 
 #network {
-    background-color: #2980b9;
+    color: @iceberg-blue;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    color: @iceberg-orange;
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    color: @iceberg-lblue;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    color: @iceberg-red;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+    background-color: @surfacefaint;
 }
 
 #wireplumber {
@@ -234,6 +270,11 @@ label:focus {
     background-color: #ffa000;
 }
 
+#custom-power {
+    color: @iceberg-blue;
+    margin-right: 4px;
+}
+
 #temperature {
     background-color: #f0932b;
 }
@@ -256,12 +297,11 @@ label:focus {
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    color: @iceberg-orange;
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    color: @iceberg-red;
 }
 
 #mpd {

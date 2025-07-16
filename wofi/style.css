@@ -1,27 +1,30 @@
 /* Wofi styles
-R: v0.1.0; E: 2025/07/13 */
-@define-color bg-main rgb(18, 18, 27);
+R: v0.1.1; E: 2025/07/14 */
+
+@define-color bg-main rgba(18, 18, 27, 0.98);
 @define-color bg-light rgb(36, 36, 51);
 @define-color border rgb(48, 48, 68);
 @define-color text-bright rgb(240, 240, 240);
 @define-color text-faint rgb(126, 126, 150);
+@define-color transparent rgba(0, 0, 0, 0);
 
 window {
     margin: 0px;
     padding: 10px;
     border-radius: 8px;
     background-color: @bg-main;
+    font-size: 14px;
 }
 
 #inner-box {
     margin: 8px;
     padding: 0px;
-    background-color: @bg-main;
+    background-color: @transparent;
     border-radius: 8px;
 }
 
 #input {
-    background-color: @bg-main;
+    background-color: @transparent;
     border: none;
     border-radius: 0px;
     border-top-left-radius: 8px;
@@ -42,7 +45,7 @@ window {
 }
 
 #entry {
-    background-color: @bg-main;
+    background-color: @transparent;
     color: @text-faint;
     padding: 8px 8px;
     border-radius: 8px;
@@ -50,6 +53,10 @@ window {
 #entry:selected {
     background-color: @bg-light;
     color: @text-bright;
+}
+#entry img {
+    width: 20px;
+    height: 20px;
 }
 #entry arrow {
     border: none;
