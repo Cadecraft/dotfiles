@@ -1,9 +1,10 @@
 /* Waybar style.css
-R: v0.2.1; E: 2025/07/15 */
+R: v0.2.2; E: 2025/07/18 */
 
 @define-color bgcolor rgba(43, 43, 59, 0.5);
 @define-color surface rgb(19, 19, 30);
 @define-color surfacefaint rgba(19, 19, 30, 0.5);
+@define-color surfacefaint2 rgba(19, 19, 30, 0.8);
 @define-color text rgba(255, 255, 255, 0.9);
 @define-color textdark rgba(10, 10, 14, 0.9);
 /* Iceberg color palette thanks to cocopon/iceberg.vim */
@@ -17,8 +18,8 @@ R: v0.2.1; E: 2025/07/15 */
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: monospace;/*, FontAwesome, Roboto, Helvetica, Arial, sans-serif, monospace;*/
-    font-size: 13px;
+    font-family: Consolas NF, monospace;/*, FontAwesome, Roboto, Helvetica, Arial, sans-serif, monospace;*/
+    font-size: 14px;
 }
 
 window#waybar {
@@ -129,24 +130,33 @@ button:hover {
 #mpd {
     padding: 0px 10px;
     color: @text;
-    border-radius: 4px;
+    border-radius: 0px;
     margin: 4px 0px;
     background-color: @surface;
 }
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#temperature:hover,
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#custom-media:hover,
+#tray:hover,
+#mode:hover,
+#idle_inhibitor:hover,
+#scratchpad:hover,
+#power-profiles-daemon:hover,
+#custom-power:hover,
+#mpd:hover {
+    background-color: @surfacefaint;
+}
 
-#window,
 #workspaces {
     margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 4px;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
 }
 
 /* Right modules end caps */
@@ -240,11 +250,6 @@ label:focus {
 
 #pulseaudio.muted {
     color: @iceberg-red;
-}
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: @surfacefaint;
 }
 
 #wireplumber {

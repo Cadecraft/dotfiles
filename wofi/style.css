@@ -1,8 +1,9 @@
 /* Wofi styles
-R: v0.1.1; E: 2025/07/14 */
+R: v0.1.2; E: 2025/07/19 */
 
 @define-color bg-main rgba(18, 18, 27, 0.98);
 @define-color bg-light rgb(36, 36, 51);
+@define-color bg-light-2 rgb(46, 46, 62);
 @define-color border rgb(48, 48, 68);
 @define-color text-bright rgb(240, 240, 240);
 @define-color text-faint rgb(126, 126, 150);
@@ -54,9 +55,12 @@ window {
     background-color: @bg-light;
     color: @text-bright;
 }
-#entry img {
-    width: 20px;
-    height: 20px;
+#entry:focus {
+    outline: none;
+}
+#entry image {
+    margin-right: 10px;
+    margin-left: 4px;
 }
 #entry arrow {
     border: none;
