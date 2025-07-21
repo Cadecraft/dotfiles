@@ -4,5 +4,5 @@
 " Appearance: font, no menu, no scrollbars, console-style tabs
 set guioptions=d
 set guifont=Consolas:h11:cANSI
-# For Linux:
-# set guifont=Consolas\ NF\ 11
+" For Linux:
+" set guifont=Consolas\ NF\ 11
