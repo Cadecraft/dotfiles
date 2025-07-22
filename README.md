@@ -36,3 +36,4 @@ My personal dotfiles: how I store my preferences and configs for various tools.
     - Config for Hyprlock
 - Config for Waybar
 - Config for Wofi (styles)
+- Config for user directories on Linux
