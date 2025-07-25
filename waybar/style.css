@@ -1,8 +1,10 @@
 /* Waybar style.css
-R: v0.2.2; E: 2025/07/18 */
+R: v0.2.4; E: 2025/07/24 */
 
 @define-color bgcolor rgba(43, 43, 59, 0.5);
-@define-color surface rgb(19, 19, 30);
+@define-color bgcolordark rgba(43, 43, 59, 0.7);
+@define-color bgcolordark2 rgba(19, 19, 30, 0.8);
+@define-color surface rgba(19, 19, 30, 0.99);
 @define-color surfacefaint rgba(19, 19, 30, 0.5);
 @define-color surfacefaint2 rgba(19, 19, 30, 0.8);
 @define-color text rgba(255, 255, 255, 0.9);
@@ -23,12 +25,11 @@ R: v0.2.2; E: 2025/07/18 */
 }
 
 window#waybar {
-    background-color: @bgcolor;
+    background-color: @bgcolordark;
     color: @text;
     transition-property: background-color;
     transition-duration: .5s;
-    border-bottom-right-radius: 13px;
-    border-bottom-left-radius: 13px;
+    border-radius: 10px;
 }
 
 window#waybar.hidden {
@@ -73,19 +74,19 @@ button:hover {
     background-color: @surfacefaint;
     color: @text;
     margin: 4px 2px;
-    border-radius: 4px;
+    border-radius: 6px;
     font-family: monospace;
     font-weight: bold;
 }
 
 #workspaces button:first-child {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
 #workspaces button:last-child {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 #workspaces button:hover {
@@ -130,9 +131,9 @@ button:hover {
 #mpd {
     padding: 0px 10px;
     color: @text;
-    border-radius: 0px;
-    margin: 4px 0px;
-    background-color: @surface;
+    border-radius: 6px;
+    margin: 6px 2px;
+    background-color: @surfacefaint2;
 }
 #clock:hover,
 #battery:hover,
@@ -156,17 +157,18 @@ button:hover {
 }
 
 #workspaces {
-    margin: 0 4px;
+    margin: 2 4px;
 }
 
 /* Right modules end caps */
 #idle_inhibitor {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 #custom-power {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-right: 6px;
 }
 
 #clock {
@@ -277,7 +279,6 @@ label:focus {
 
 #custom-power {
     color: @iceberg-blue;
-    margin-right: 4px;
 }
 
 #temperature {
@@ -286,10 +287,6 @@ label:focus {
 
 #temperature.critical {
     background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
 }
 
 #tray > .passive {
@@ -355,7 +352,7 @@ label:focus {
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 #privacy {
@@ -377,4 +374,14 @@ label:focus {
 
 #privacy-item.audio-out {
     background-color: #0069d4;
+}
+
+tooltip {
+    border: none;
+    background-color: @surfacefaint2;
+    border-radius: 4px;
+}
+
+tooltip * {
+    padding: 2px 4px;
 }
