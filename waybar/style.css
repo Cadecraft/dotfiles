@@ -1,5 +1,5 @@
 /* Waybar style.css
-R: v0.2.4; E: 2025/07/24 */
+R: v0.2.5; E: 2025/09/16 */
 
 @define-color bgcolor rgba(43, 43, 59, 0.5);
 @define-color bgcolordark rgba(43, 43, 59, 0.7);
@@ -70,7 +70,6 @@ button:hover {
 
 #workspaces button {
     padding: 0 5px;
-    padding-bottom: 1px;
     background-color: @surfacefaint;
     color: @text;
     margin: 4px 2px;
