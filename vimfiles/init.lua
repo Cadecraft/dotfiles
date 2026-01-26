@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.9.5, E: 2026/01/26
+-- R: v0.9.6, E: 2026/01/26
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -299,34 +299,24 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Telescope resume' })
 
-local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-vim.lsp.config('*', {
-	capabilities = cmp_nvim_lsp_capabilities
-})
-
 -- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md>)
-local lsps = {
-	rust_analyzer = {},
-	lua_ls = {},
-	html = {},
-	cssls = {},
-	pylsp = {},
-	clangd = {},
-	-- Note: for eslint to display errors in diagnostics, may need to downgrade?
-	-- `npm i -g vscode-langservers-extracted@4.8.0`
-	eslint = {
-		flags = {
-			allow_incremental_sync = false,
-			debounce_text_changes = 1000,
-		}
-	},
-}
--- TODO: refactor this to use the .enable({ a, b, c, }) syntax
-for name, config in pairs(lsps) do
-	vim.lsp.config(name, config)
-	vim.lsp.enable(name)
-end
+vim.lsp.enable({
+	"rust_analyzer",
+	"lua_ls",
+	"html",
+	"cssls",
+	"pylsp",
+	"clangd",
+	"eslint"
+})
+-- Note: for eslint to display errors in diagnostics, may need to downgrade?
+-- `npm i -g vscode-langservers-extracted@4.8.0`
+vim.lsp.config("eslint", {
+	flags = {
+		allow_incremental_sync = false,
+		debounce_text_changes = 1000,
+	}
+})
 -- typescript-tools is an exception to the nvim 1.11 syntax
 require("typescript-tools").setup()
 
@@ -336,7 +326,6 @@ cmp.setup({
 	snippet = {
 		expand = function(args)
 			require('luasnip').lsp_expand(args.body)
-			-- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -347,6 +336,12 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 	})
+})
+
+local cmp_nvim_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config('*', {
+	capabilities = cmp_nvim_lsp_capabilities
 })
 
 -- Appearance: colors
