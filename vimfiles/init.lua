@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.9.1, E: 2025/06/26
+-- R: v0.9.3, E: 2026/01/25
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -102,7 +102,9 @@ end
 local colorschemes_hotkeys = {
 	["e"] = "everforest",
 	["i"] = "iceberg",
-	["t"] = "tokyonight"
+	["t"] = "tokyonight",
+	["c"] = "catppuccin",
+	["k"] = "kanagawa",
 }
 for hotkey, scheme in pairs(colorschemes_hotkeys) do
 	vim.api.nvim_set_keymap('n', '<Leader>c' .. hotkey, ':colorscheme ' .. scheme .. '<CR>', { noremap = true })
@@ -181,18 +183,19 @@ require("lazy").setup({
 		{ 'lervag/vimtex' },
 		-- Themes: main
 		{ 'oahlen/iceberg.nvim' }, -- Default
-		{ 'ellisonleao/gruvbox.nvim' }, -- Games
+		{ 'catppuccin/nvim', name = 'catppuccin' }, -- Python or misc.
 		{ 'rebelot/kanagawa.nvim' }, -- Rust
-		{ 'folke/tokyonight.nvim' }, -- Misc.
+		{ 'folke/tokyonight.nvim' }, -- Mobile app dev
 		{ 'sainnhe/everforest' }, -- Web dev
 		-- Themes: misc.
-		{ 'catppuccin/nvim', name = 'catppuccin' },
+		{ 'ellisonleao/gruvbox.nvim' }, -- Games
 		{ 'embark-theme/vim', name = 'embark' },
 		{ 'nordtheme/vim' },
 		{ 'lewpoly/sherbet.nvim' }, -- C programming (old)
 		{ 'vague2k/vague.nvim' }, -- C programming
 		{ 'AlexvZyl/nordic.nvim' }, -- When bored (also C programming)
 		{ 'savq/melange-nvim' }, -- Warmer
+		{ 'rose-pine/neovim' },
 		-- Themes: joke/showcase
 		{ 'Mofiqul/vscode.nvim' }, -- Lua port of tomasiser/vim-code-dark
 		{ 'dundargoc/fakedonalds.nvim' },
@@ -256,7 +259,6 @@ require("lazy").setup({
 		{ 'L3MON4D3/LuaSnip' },
 		{ 'nvim-lua/plenary.nvim' },
 		{ 'pmizio/typescript-tools.nvim' },
-		{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
 		{ 'MaxMEllon/vim-jsx-pretty' },
 	},
 	checker = { enabled = true, notify = false },
@@ -275,6 +277,12 @@ require('lualine').setup({
 	}
 })
 require('gitsigns').setup()
+require('rose-pine').setup({
+	variant = "moon",
+	styles = {
+		italic = false,
+	}
+});
 -- Telescope setup and shortcuts
 -- DO: install ripgrep (for live grep)
 require('telescope').setup({
@@ -291,27 +299,29 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Telescope resume' })
 
--- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md>)
-local lsp_zero = require('lsp-zero')
-lsp_zero.on_attach(function(client, bufnr)
-	-- :help `lsp-zero-keybindings` shows available actions
-	lsp_zero.default_keymaps({ buffer = bufnr })
-end)
-require('lspconfig').rust_analyzer.setup({})
-require('lspconfig').lua_ls.setup({})
-require('lspconfig').html.setup({})
--- require('lspconfig').js.setup({})
-require('lspconfig').cssls.setup({})
-require('lspconfig').pylsp.setup({})
-require('lspconfig').clangd.setup({})
--- Note: for eslint to display errors in diagnostics, may need to downgrade? (npm i -g vscode-langservers-extracted@4.8.0)
-require('lspconfig').eslint.setup({
-	flags = {
-		allow_incremental_sync = false,
-		debounce_text_changes = 1000,
-	}
-})
-require('typescript-tools').setup({})
+-- LSPs (see <https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md>)
+local lsps = {
+	rust_analyzer = {},
+	lua_ls = {},
+	html = {},
+	cssls = {},
+	pylsp = {},
+	clangd = {},
+	-- Note: for eslint to display errors in diagnostics, may need to downgrade?
+	-- `npm i -g vscode-langservers-extracted@4.8.0`
+	eslint = {
+		flags = {
+			allow_incremental_sync = false,
+			debounce_text_changes = 1000,
+		}
+	},
+}
+for name, config in pairs(lsps) do
+	vim.lsp.config(name, config)
+	vim.lsp.enable(name)
+end
+-- typescript-tools is an exception to the nvim 1.11 syntax
+require("typescript-tools").setup()
 
 -- Appearance: colors
 vim.opt.termguicolors = true
