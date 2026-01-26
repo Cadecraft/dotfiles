@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.9.3, E: 2026/01/25
+-- R: v0.9.4, E: 2026/01/25
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -10,8 +10,9 @@ local prefix = vim.fn.expand('~/.nvim')
 vim.opt.backupdir = { prefix .. '/.tmp//' }
 vim.opt.directory = { prefix .. '/.tmp//' }
 
+local is_windows = vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1
 -- Use PowerShell in Windows
-if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+if is_windows then
 	vim.o.shell = "powershell.exe"
 	vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
 	vim.o.shellxquote = ''
@@ -109,10 +110,9 @@ local colorschemes_hotkeys = {
 for hotkey, scheme in pairs(colorschemes_hotkeys) do
 	vim.api.nvim_set_keymap('n', '<Leader>c' .. hotkey, ':colorscheme ' .. scheme .. '<CR>', { noremap = true })
 end
--- Quick jumping to a directory
-if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
-	vim.keymap.set('n', '<Leader>ee', ':e C:/Cade/Dev<CR>', { noremap = true })
-end
+-- Quick jumping to the development projects directory
+local dev_dir = is_windows and 'C:/Cade/Dev' or '~/Dev'
+vim.keymap.set('n', '<Leader>ee', ':e ' .. dev_dir .. '<CR>', { noremap = true })
 -- Quick calling custom commands
 vim.keymap.set('n', '<Leader>ll', ':ListMode<CR>', { noremap = true });
 vim.keymap.set('n', '<Leader>ww', ':WritingMode<CR>', { noremap = true });
@@ -266,7 +266,6 @@ require("lazy").setup({
 
 -- Plugins: preferences/config
 -- Misc.
---vim.g.NERDTreeChDirMode = 2
 if vim.fn.exists('g:loaded_webdevicons') then
 	vim.cmd('call webdevicons#refresh()')
 end
