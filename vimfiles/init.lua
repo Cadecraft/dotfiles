@@ -212,42 +212,37 @@ require("lazy").setup({
 			config = function ()
 				local configs = require("nvim-treesitter.configs")
 				-- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
+				local parsers = {
+					"javascript",
+					"html",
+					"css",
+					"cpp",
+					"vimdoc",
+					"comment",
+					"markdown",
+					"markdown_inline",
+					"python",
+					"rust",
+					"java",
+					"c"
+				}
+				-- Enable the inbuilt indent for only js/ts
+				-- This partly solves the indent issue for jsx files
+				local indent_disabled = {}
+				for _, p in ipairs(parsers) do
+					if p ~= "javascript" then
+						table.insert(indent_disabled, p)
+					end
+				end
 				-- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
 				configs.setup({
-					ensure_installed = {
-						"javascript",
-						"html",
-						"css",
-						"cpp",
-						"vimdoc",
-						"comment",
-						"markdown",
-						"markdown_inline",
-						"python",
-						"rust",
-						"java",
-						"c"
-					},
+					ensure_installed = parsers,
 					highlight = {
 						enable = true
 					},
 					indent = {
-						-- Disable the inbuilt indent for all treesitter languages except js/ts
-						-- This partly solves the indent issue for jsx files
 						enable = true,
-						disable = {
-							"html",
-							"css",
-							"cpp",
-							"vimdoc",
-							"comment",
-							"markdown",
-							"markdown_inline",
-							"python",
-							"rust",
-							"java",
-							"c"
-						}
+						disable = indent_disabled
 					}
 				})
 			end
