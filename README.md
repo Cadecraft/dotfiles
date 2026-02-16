@@ -30,8 +30,8 @@ I currently have configs for the following programs. Additional instructions are
 - WezTerm
     - On Windows 10, remove the blur/transparency section
     - Depending on which Consolas Nerd Font you installed, the name may be `Consolas 7NF` or `Consolas Nerd Font Mono`
-- Windows Terminal theme
-    - `Ctrl+,` -> Color schemes
+- Windows Terminal settings (including Iceberg theme)
+    - `Ctrl+,` -> "Open JSON File" in the bottom left, and update that file's contents
 - Alacritty
 - PowerShell (put under `~/Documents/WindowsPowerShell`)
 - Zsh
