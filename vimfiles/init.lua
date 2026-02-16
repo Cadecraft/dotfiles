@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.9.6, E: 2026/01/26
+-- R: v0.9.7, E: 2026/02/15
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -210,7 +210,7 @@ require("lazy").setup({
 			'nvim-treesitter/nvim-treesitter',
 			build = ":TSUpdate",
 			config = function ()
-				local configs = require("nvim-treesitter.configs")
+				local configs = require("nvim-treesitter.config")
 				-- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
 				local parsers = {
 					"javascript",
