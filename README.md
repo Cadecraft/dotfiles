@@ -29,6 +29,7 @@ I currently have configs for the following programs. Additional instructions are
 ### Shell/terminal
 - WezTerm
     - On Windows 10, remove the blur/transparency section
+    - Depending on which Consolas Nerd Font you installed, the name may be `Consolas 7NF` or `Consolas Nerd Font Mono`
 - Windows Terminal theme
     - `Ctrl+,` -> Color schemes
 - Alacritty
