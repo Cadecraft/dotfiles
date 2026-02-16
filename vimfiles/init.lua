@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.9.7, E: 2026/02/15
+-- R: v0.9.8, E: 2026/02/15
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -155,7 +155,7 @@ require("lazy").setup({
 	spec = {
 		-- Fuzzy finding
 		{
-			'nvim-telescope/telescope.nvim', tag = '0.1.8',
+			'nvim-telescope/telescope.nvim', version = '0.2.1',
 			dependencies = { 'nvim-lua/plenary.nvim' }
 		},
 		-- Misc. editor
