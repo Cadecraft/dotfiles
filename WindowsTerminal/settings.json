@@ -13,12 +13,12 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.FindText",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
@@ -35,22 +35,22 @@
     {
         "defaults": 
         {
-            "colorScheme": "Iceberg"
+            "colorScheme": "Iceberg",
+            "cursorShape": "filledBox",
+            "font": 
+            {
+                "face": "Consolas Nerd Font Mono"
+            },
+            "opacity": 80,
+            "useAcrylic": true
         },
         "list": 
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "cursorShape": "filledBox",
-                "font": 
-                {
-                    "face": "Consolas Nerd Font Mono"
-                },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
-                "name": "Windows PowerShell",
-                "opacity": 80,
-                "useAcrylic": true
+                "name": "Windows PowerShell"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
@@ -75,6 +75,12 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{bb878fec-dcca-5ef8-b8dc-a75a93969764}",
+                "hidden": false,
+                "name": "FedoraLinux-43",
+                "source": "Microsoft.WSL"
             }
         ]
     },
