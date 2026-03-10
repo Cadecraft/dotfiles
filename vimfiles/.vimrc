@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.5.1, E: 2025/06/26
+" R: v0.6.0, E: 2026/03/09
 
 " Simple
 set nocompatible
@@ -85,9 +85,6 @@ endfunction
 
 " Plugins: install using vim-plug (requires `plug.vim` from `junegunn/vim-plug` to be in the autoload directory)
 call plug#begin()
-" Fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 " Misc.
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
