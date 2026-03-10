@@ -1,5 +1,5 @@
 -- Wezterm config
--- R: v0.1.3; E: 2025/07/12
+-- R: v0.2.0; E: 2026/03/09
 
 -- Setup
 local wezterm = require 'wezterm'
@@ -27,25 +27,12 @@ config.window_padding = {
 	bottom = '0.5cell'
 }
 
--- Appearance: use padding unless in vim/nvim (broken)
---[[ wezterm.on('update-status', function(window, pane)
-	local overrides = window:get_config_overrides() or {}
-	if string.find(pane:get_title(), 'VIM') then
-		overrides.window_padding = {
-			left = 0,
-			right = 0,
-			top = 0,
-			bottom = 0
-		}
-	else
-		overrides.window_padding = default_padding
-	end
-	window:set_config_overrides(overrides)
-end) --]]
-
 -- Appearance: OS specific
 config.window_background_opacity = 0.8
 config.win32_system_backdrop = 'Acrylic' -- For Windows 11
+
+-- Misc
+config.warn_about_missing_glyphs = false
 
 -- Keys
 config.keys = {
