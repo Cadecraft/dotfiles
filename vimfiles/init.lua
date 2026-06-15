@@ -157,15 +157,9 @@ vim.pack.add({
 	-- Themes: misc.
 	'https://github.com/ellisonleao/gruvbox.nvim', -- Games
 	{ src = 'https://github.com/embark-theme/vim', name = 'embark' },
-	'https://github.com/nordtheme/vim',
-	'https://github.com/lewpoly/sherbet.nvim', -- C programming (old)
-	'https://github.com/vague2k/vague.nvim', -- C programming
-	'https://github.com/AlexvZyl/nordic.nvim', -- When bored (also C programming)
-	'https://github.com/savq/melange-nvim', -- Warmer
-	'https://github.com/rose-pine/neovim',
+	'https://github.com/AlexvZyl/nordic.nvim', -- C programming
 	-- Themes: joke/showcase
 	'https://github.com/Mofiqul/vscode.nvim', -- Lua port of tomasiser/vim-code-dark
-	'https://github.com/dundargoc/fakedonalds.nvim',
 	'https://github.com/jamescherti/vim-tomorrow-night-deepblue',
 	'https://github.com/xiantang/darcula-dark.nvim', -- Nvim port of the JetBrains colorscheme
 	-- Treesitter
@@ -195,12 +189,6 @@ require('nvim-tree').setup {
 		dotfiles = false
 	}
 }
-require('rose-pine').setup({
-	variant = "moon",
-	styles = {
-		italic = false,
-	}
-});
 -- Telescope setup and shortcuts
 -- DO: install ripgrep (for live grep)
 require('telescope').setup({
