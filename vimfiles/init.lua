@@ -146,8 +146,7 @@ vim.pack.add({
 	'https://github.com/nvim-lualine/lualine.nvim',
 	'https://github.com/folke/zen-mode.nvim',
 	'https://github.com/tpope/vim-surround',
-	-- Misc. integrations
-	'https://github.com/lervag/vimtex',
+	'https://github.com/linrongbin16/lsp-progress.nvim',
 	-- Themes: main
 	'https://github.com/oahlen/iceberg.nvim', -- Default
 	{ src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' }, -- Python or misc.
@@ -173,17 +172,27 @@ vim.pack.add({
 	'https://github.com/nvim-lua/plenary.nvim',
 	'https://github.com/pmizio/typescript-tools.nvim',
 	'https://github.com/MaxMEllon/vim-jsx-pretty',
+	'https://github.com/lervag/vimtex',
 })
 
 -- Plugins: preferences/config
 -- Misc.
+require('gitsigns').setup()
+require('lsp-progress').setup()
 require('lualine').setup({
+	sections = {
+		lualine_c = {
+			-- Wrap in function to avoid the lazy dependency issue
+			function()
+				return require('lsp-progress').progress()
+			end
+		}
+	},
 	tabline = {
 		lualine_a = {'buffers'},
 		lualine_b = {'tabs'}
 	}
 })
-require('gitsigns').setup()
 require('nvim-tree').setup {
 	filters = {
 		dotfiles = false
