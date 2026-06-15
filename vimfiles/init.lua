@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v0.9.8, E: 2026/02/15
+-- R: v1.0.0, E: 2026/06/15
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -18,26 +18,9 @@ if is_windows then
 	vim.o.shellxquote = ''
 end
 
--- Disable netrw
+-- Disable netrw in favor of nvim-tree.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- Bootstrap lazy.nvim (source: <https://lazy.folke.io/installation>)
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
-end
-vim.opt.rtp:prepend(lazypath)
 
 -- Appearance: preferences
 vim.opt.number = true
@@ -151,120 +134,55 @@ vim.api.nvim_create_user_command('HideBackground',
 	end, {}
 )
 
-require("lazy").setup({
-	spec = {
-		-- Fuzzy finding
-		{
-			'nvim-telescope/telescope.nvim', version = '0.2.1',
-			dependencies = { 'nvim-lua/plenary.nvim' }
-		},
-		-- Misc. editor
-		{
-			"nvim-tree/nvim-tree.lua",
-			dependencies = {
-				"nvim-tree/nvim-web-devicons"
-			},
-			config = function()
-				require("nvim-tree").setup {
-					filters = {
-						dotfiles = false
-					}
-				}
-			end
-		},
-		{ "lewis6991/gitsigns.nvim" },
-		{
-			'nvim-lualine/lualine.nvim',
-			dependencies = { 'nvim-tree/nvim-web-devicons' }
-		},
-		{ 'folke/zen-mode.nvim' },
-		{ 'tpope/vim-surround' },
-		-- Misc. integrations
-		{ 'lervag/vimtex' },
-		-- Themes: main
-		{ 'oahlen/iceberg.nvim' }, -- Default
-		{ 'catppuccin/nvim', name = 'catppuccin' }, -- Python or misc.
-		{ 'rebelot/kanagawa.nvim' }, -- Rust
-		{ 'folke/tokyonight.nvim' }, -- Mobile app dev
-		{ 'sainnhe/everforest' }, -- Web dev
-		-- Themes: misc.
-		{ 'ellisonleao/gruvbox.nvim' }, -- Games
-		{ 'embark-theme/vim', name = 'embark' },
-		{ 'nordtheme/vim' },
-		{ 'lewpoly/sherbet.nvim' }, -- C programming (old)
-		{ 'vague2k/vague.nvim' }, -- C programming
-		{ 'AlexvZyl/nordic.nvim' }, -- When bored (also C programming)
-		{ 'savq/melange-nvim' }, -- Warmer
-		{ 'rose-pine/neovim' },
-		-- Themes: joke/showcase
-		{ 'Mofiqul/vscode.nvim' }, -- Lua port of tomasiser/vim-code-dark
-		{ 'dundargoc/fakedonalds.nvim' },
-		{ 'jamescherti/vim-tomorrow-night-deepblue' },
-		{ 'xiantang/darcula-dark.nvim' }, -- Nvim port of the JetBrains colorscheme
-		-- TODO: find more color schemes?
-		-- Tree
-		{ 'nvim-tree/nvim-tree.lua' },
-		{ 'ryanoasis/vim-devicons' },
-		-- Treesitter
-		{
-			'nvim-treesitter/nvim-treesitter',
-			build = ":TSUpdate",
-			config = function ()
-				local configs = require("nvim-treesitter.config")
-				-- Parsers (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
-				local parsers = {
-					"javascript",
-					"html",
-					"css",
-					"cpp",
-					"vimdoc",
-					"comment",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"rust",
-					"java",
-					"c"
-				}
-				-- Enable the inbuilt indent for only js/ts
-				-- This partly solves the indent issue for jsx files
-				local indent_disabled = {}
-				for _, p in ipairs(parsers) do
-					if p ~= "javascript" then
-						table.insert(indent_disabled, p)
-					end
-				end
-				-- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
-				configs.setup({
-					ensure_installed = parsers,
-					highlight = {
-						enable = true
-					},
-					indent = {
-						enable = true,
-						disable = indent_disabled
-					}
-				})
-			end
-		},
-		-- LSP/languages/completion
-		{ 'neovim/nvim-lspconfig' },
-		{ 'hrsh7th/nvim-cmp' },
-		{ 'hrsh7th/cmp-nvim-lsp' },
-		{ 'L3MON4D3/LuaSnip' },
-		{ 'saadparwaiz1/cmp_luasnip' },
-		{ 'nvim-lua/plenary.nvim' },
-		{ 'pmizio/typescript-tools.nvim' },
-		{ 'MaxMEllon/vim-jsx-pretty' },
-	},
-	checker = { enabled = true, notify = false },
+vim.pack.add({
+	-- Deps
+	'https://github.com/nvim-lua/plenary.nvim',
+	'https://github.com/nvim-tree/nvim-web-devicons',
+	-- Fuzzy finding
+	{ src = 'https://github.com/nvim-telescope/telescope.nvim', version = vim.version.range('0.2.x') },
+	-- Misc. editor
+	'https://github.com/nvim-tree/nvim-tree.lua',
+	'https://github.com/lewis6991/gitsigns.nvim',
+	'https://github.com/nvim-lualine/lualine.nvim',
+	'https://github.com/folke/zen-mode.nvim',
+	'https://github.com/tpope/vim-surround',
+	-- Misc. integrations
+	'https://github.com/lervag/vimtex',
+	-- Themes: main
+	'https://github.com/oahlen/iceberg.nvim', -- Default
+	{ src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' }, -- Python or misc.
+	'https://github.com/rebelot/kanagawa.nvim', -- Rust
+	'https://github.com/folke/tokyonight.nvim', -- Mobile app dev
+	'https://github.com/sainnhe/everforest', -- Web dev
+	-- Themes: misc.
+	'https://github.com/ellisonleao/gruvbox.nvim', -- Games
+	{ src = 'https://github.com/embark-theme/vim', name = 'embark' },
+	'https://github.com/nordtheme/vim',
+	'https://github.com/lewpoly/sherbet.nvim', -- C programming (old)
+	'https://github.com/vague2k/vague.nvim', -- C programming
+	'https://github.com/AlexvZyl/nordic.nvim', -- When bored (also C programming)
+	'https://github.com/savq/melange-nvim', -- Warmer
+	'https://github.com/rose-pine/neovim',
+	-- Themes: joke/showcase
+	'https://github.com/Mofiqul/vscode.nvim', -- Lua port of tomasiser/vim-code-dark
+	'https://github.com/dundargoc/fakedonalds.nvim',
+	'https://github.com/jamescherti/vim-tomorrow-night-deepblue',
+	'https://github.com/xiantang/darcula-dark.nvim', -- Nvim port of the JetBrains colorscheme
+	-- Treesitter
+	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
+	-- LSP/languages/completion
+	'https://github.com/neovim/nvim-lspconfig',
+	'https://github.com/hrsh7th/nvim-cmp',
+	'https://github.com/hrsh7th/cmp-nvim-lsp',
+	'https://github.com/L3MON4D3/LuaSnip',
+	'https://github.com/saadparwaiz1/cmp_luasnip',
+	'https://github.com/nvim-lua/plenary.nvim',
+	'https://github.com/pmizio/typescript-tools.nvim',
+	'https://github.com/MaxMEllon/vim-jsx-pretty',
 })
 
 -- Plugins: preferences/config
 -- Misc.
-if vim.fn.exists('g:loaded_webdevicons') then
-	vim.cmd('call webdevicons#refresh()')
-end
 require('lualine').setup({
 	tabline = {
 		lualine_a = {'buffers'},
@@ -272,6 +190,11 @@ require('lualine').setup({
 	}
 })
 require('gitsigns').setup()
+require('nvim-tree').setup {
+	filters = {
+		dotfiles = false
+	}
+}
 require('rose-pine').setup({
 	variant = "moon",
 	styles = {
@@ -314,6 +237,42 @@ vim.lsp.config("eslint", {
 })
 -- typescript-tools is an exception to the nvim 1.11 syntax
 require("typescript-tools").setup()
+-- TODO: lsp loading indicator
+
+-- Treesitter (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
+local parsers = {
+	"javascript",
+	"html",
+	"css",
+	"cpp",
+	"vimdoc",
+	"comment",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"rust",
+	"java",
+	"c"
+}
+-- Enable the inbuilt indent for only js/ts
+-- This partly solves the indent issue for jsx files
+local indent_disabled = {}
+for _, p in ipairs(parsers) do
+	if p ~= "javascript" then
+		table.insert(indent_disabled, p)
+	end
+end
+-- DO: prerequisites in Windows: C compiler (ex. gcc) added to PATH
+require("nvim-treesitter.config").setup({
+	ensure_installed = parsers,
+	highlight = {
+		enable = true
+	},
+	indent = {
+		enable = true,
+		disable = indent_disabled
+	}
+})
 
 -- cmp (see <https://github.com/hrsh7th/nvim-cmp>)
 cmp = require("cmp")
