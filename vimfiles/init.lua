@@ -234,7 +234,6 @@ vim.lsp.config("eslint", {
 })
 -- typescript-tools is an exception to the nvim 1.11 syntax
 require("typescript-tools").setup()
--- TODO: lsp loading indicator
 
 -- Treesitter (see <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>)
 local parsers = {
