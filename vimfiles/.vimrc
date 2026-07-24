@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.6.0, E: 2026/03/09
+" R: v0.6.1, E: 2026/07/24
 
 " Simple
 set nocompatible
@@ -35,6 +35,8 @@ vnoremap <Leader>p "_dP
 " Strikethrough in markdown lists
 nnoremap <Leader>s _wi~~<Esc>A~~<Esc>0
 nnoremap <Leader>S _f~xxf~xx0
+" Insert current date
+nnoremap <Leader>it :put =strftime('%Y/%m/%d')<CR>kJ
 " Selection utilities for misc. personal use
 nnoremap <Leader>v ^vg_
 nnoremap <Leader>ma ?* <CR>wvg_

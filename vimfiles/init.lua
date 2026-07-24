@@ -1,5 +1,5 @@
 -- init.lua for Cadecraft
--- R: v1.0.0, E: 2026/06/15
+-- R: v1.0.1, E: 2026/07/24
 
 -- This file also contains the translated contents of my vimrc from regular Vim, so it can be used by itself without a vimrc dependency
 
@@ -58,6 +58,8 @@ vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true })
 -- Strikethrough in markdown lists
 vim.api.nvim_set_keymap('n', '<Leader>s', '_wi~~<Esc>A~~<Esc>0', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>S', '_f~xxf~xx0', { noremap = true })
+-- Insert current date
+vim.api.nvim_set_keymap('n', '<Leader>it', ':put =strftime(\'%Y/%m/%d\')<CR>kJ', { noremap = true })
 -- Selection utilities for misc. personal use
 vim.api.nvim_set_keymap('n', '<Leader>v', '^vg_', { noremap = true });
 vim.api.nvim_set_keymap('n', '<Leader>ma', '?* <CR>:noh<CR>wvg_', { noremap = true });
@@ -198,6 +200,7 @@ require('nvim-tree').setup {
 		dotfiles = false
 	}
 }
+
 -- Telescope setup and shortcuts
 -- DO: install ripgrep (for live grep)
 require('telescope').setup({
