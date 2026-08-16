@@ -1,5 +1,5 @@
 " Vimrc for Cadecraft
-" R: v0.6.1, E: 2026/07/24
+" R: v0.6.2, E: 2026/08/16
 
 " Simple
 set nocompatible
@@ -75,7 +75,11 @@ function ListModeFunction()
 	set breakindent linebreak ts=4 sw=4 noexpandtab display+=lastline autoindent ignorecase so=8
 	if has("gui_running")
 		" In gvim, decrease the font size and increase the window size
-		set guifont=Consolas:h10:cANSI
+		if has('win32')
+			set guifont=Consolas:h10:cANSI
+		else
+			set guifont=Inconsolata\ Nerd\ Font\ Regular\ 10
+		endif
 		set lines=30
 		set columns=100
 		winpos 800 400
