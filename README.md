@@ -11,7 +11,10 @@ My personal dotfiles: how I store my preferences and configs for various tools.
 
 ## Notes
 
-- Several of these dotfiles are intended to be used with nerd/powerline fonts. My go-to fonts are Consolas 7NF ([Znuff/consolas-powerline](https://github.com/Znuff/consolas-powerline)) or [Inconsolata Nerd Font](https://www.nerdfonts.com/font-downloads).
+Several of these dotfiles are intended to be used with nerd/powerline fonts
+- Windows: Consolas (a default font) and [Inconsolata Nerd Font](https://www.nerdfonts.com/font-downloads) are needed
+- Linux: only [Inconsolata Nerd Font](https://www.nerdfonts.com/font-downloads) is needed
+- Legacy: ([Consolas 7NF](https://github.com/Znuff/consolas-powerline))
 
 ## Current Dotfiles
 
